@@ -12,7 +12,7 @@ Release ZIPs require GitHub SHA256 digests or matching .sha256 assets.
 #>
 [CmdletBinding()]
 param(
-    [string]$InstallDir = (Join-Path $env:LOCALAPPDATA 'Arknights_ReRoll'),
+    [string]$InstallDir = (Get-Location).Path,
     [string]$ResourceTag = 'latest',
     [string]$AppTag = '',
     [string]$ResourceAsset = '',
@@ -27,6 +27,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$script:AnrerollSetupPath = $PSCommandPath
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 function Read-JsonFile([string]$Path) {
@@ -63,6 +64,19 @@ function Assert-NoReparse([string]$Path) {
         $parent = [IO.Path]::GetDirectoryName($current)
         if ($parent -eq $current) { break }
         $current = $parent
+    }
+}
+
+function Assert-UnmanagedInstallDirectory([string]$Root) {
+    if (-not (Test-Path -LiteralPath $Root)) { return }
+    # Permit the running installer itself, but never unrelated files/folders.
+    # This keeps a newly downloaded setup.ps1 usable in its current directory.
+    foreach ($item in @(Get-ChildItem -LiteralPath $Root -Force)) {
+        if ($item.PSIsContainer -or -not $script:AnrerollSetupPath -or
+            $item.FullName -ne [IO.Path]::GetFullPath($script:AnrerollSetupPath)) {
+            throw 'InstallDir contains other files and is not managed by this installer. Use an empty directory or one containing only the running setup script.'
+        }
+        Assert-NoReparse $item.FullName
     }
 }
 
@@ -278,9 +292,7 @@ function Install-ANReroll {
     $statePath = Join-Path $root '.anreroll-install.json'
     Assert-NoReparse $statePath
     $previousState = if (Test-Path -LiteralPath $statePath) { [IO.File]::ReadAllText($statePath) } else { $null }
-    if ((Test-Path -LiteralPath $root) -and @(Get-ChildItem -LiteralPath $root -Force).Count -and -not $previousState) {
-        throw 'InstallDir is not empty and is not managed by this installer. Choose a new directory.'
-    }
+    if (-not $previousState) { Assert-UnmanagedInstallDirectory $root }
     if ($previousState) {
         $state = $previousState | ConvertFrom-Json
         if ($state.schema_version -ne 1) { throw 'Unknown installation state.' }

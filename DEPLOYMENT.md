@@ -2,13 +2,13 @@
 
 ## 사용자 설치
 
-Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 설치 위치는 쓰기 가능한 로컬 폴더를 사용하세요. Git, 관리자 권한, 시스템 Python 설치는 필요하지 않습니다.
+Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치 위치는 **PowerShell에서 명령을 실행한 현재 폴더**이며, `-InstallDir`로 다른 위치를 지정할 수 있습니다. 첫 설치는 쓰기 가능한 빈 로컬 폴더 또는 실행할 `setup.ps1`만 있는 폴더에서 진행하세요. Git, 관리자 권한, 시스템 Python 설치는 필요하지 않습니다.
 
 1. [Arknights_ReRoll 릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `setup.ps1`을 내려받아 확인합니다.
 2. PowerShell에서 스크립트를 실행합니다.
 
    ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1 -InstallDir C:\Games\ANReroll
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
    ```
 
 3. 완료 메시지가 표시되면 설치 폴더의 `Start-ANReroll.cmd`를 실행합니다.
@@ -74,7 +74,9 @@ ANReroll/
 
 `-AppTag`로 다른 MFWSide 릴리즈를 지정할 수 있지만 SDK 버전이 맞아야 합니다. ZIP이 여러 개라 자동 선택이 불가능하면 `-ResourceAsset ANReroll-resources-v0.1.0.zip`으로 정확한 파일명을 지정합니다.
 
-이미 설치가 완료된 폴더에서 `-Update` 없이 재실행하면 기존 파일을 교체하지 않습니다. 업데이트는 이 스크립트가 만든 설치 폴더에만 허용하며 소스 저장소나 관리 표식이 없는 비어 있지 않은 폴더에는 설치하지 않습니다.
+이미 설치가 완료된 폴더에서 `-Update` 없이 재실행하면 기존 파일을 교체하지 않습니다. 업데이트는 이 스크립트가 만든 설치 폴더에만 허용하며 소스 저장소나 다른 파일·폴더가 있는 미관리 폴더에는 설치하지 않습니다. 예외는 실행 중인 설치 스크립트 파일 하나뿐입니다. 스크립트를 다른 폴더에서 절대 경로로 실행해도 스크립트 위치가 아니라 PowerShell의 현재 폴더에 설치합니다. 소스 저장소에서 테스트할 때는 별도의 `-InstallDir`를 지정하세요.
+
+이전 기본 경로인 `%LOCALAPPDATA%\Arknights_ReRoll`의 설치본은 자동으로 옮기거나 삭제하지 않습니다. 그 위치에서 계속 사용하려면 해당 폴더를 `-InstallDir`로 지정하세요. 새 위치에 설치하려면 새 폴더에서 다시 설치하고, 필요한 계정 백업·설정은 별도로 보관하세요.
 
 업데이트 전에 새 리소스 검사를 수행하고 기존 관리 파일은 `.setup-backups/`에 보존합니다. 교체 도중 실패하면 기존 파일을 되돌립니다. `assets/user`, `assets/saved`, `assets/failed`는 교체하지 않습니다. 기존 venv의 SDK·의존성이 다른 경우에는 자동 변경하지 않고 새 폴더에 설치하도록 안내합니다.
 

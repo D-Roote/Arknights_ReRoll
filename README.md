@@ -15,7 +15,7 @@ Windows x64 환경에서 사용합니다. 별도로 Python을 설치하거나 �
 
 3. 설치 완료 후 설치 폴더의 `Start-ANReroll.cmd`를 더블클릭합니다.
 
-설치 스크립트가 실행 앱·리소스·현재 OCR 모델·로컬 Python·Agent용 venv와 의존성을 구성합니다. 기본 설치 위치는 `%LOCALAPPDATA%\Arknights_ReRoll`이며 시스템 Python·PATH는 변경하지 않습니다. `setup.ps1` 자체는 더블클릭 대신 위 명령으로 실행하세요.
+설치 스크립트가 실행 앱·리소스·현재 OCR 모델·로컬 Python·Agent용 venv와 의존성을 구성합니다. 기본 설치 위치는 **PowerShell에서 명령을 실행한 현재 폴더**입니다. 예를 들어 `C:\Games\AR`에서 실행하면 그 폴더에 바로 설치됩니다. 첫 설치는 빈 폴더 또는 실행할 `setup.ps1`만 있는 폴더에서 진행하세요. 시스템 Python·PATH는 변경하지 않으며, `setup.ps1` 자체는 더블클릭 대신 위 명령으로 실행합니다.
 
 설치 위치 변경, 업데이트, 배포물 생성은 [상세 설치·배포 안내](DEPLOYMENT.md)를 참고하세요.
 

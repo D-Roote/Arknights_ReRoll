@@ -29,7 +29,7 @@
             "name": "리세마라",
             "entry": "Main",
             "check": true,
-            "doc": "앱플레이어 해상도 1280x720, DPI 180, 프레임 60fps, adb, root 권한 확인 필수!",
+            "doc": "MuMu Player: CPU 1코어, RAM 4~5 GB, 해상도 1280x720, DPI 240, 프레임 60fps, ADB·root 권한 확인 필수!",
             "option": [
                 "유저 이름",
                 "리세 방식",

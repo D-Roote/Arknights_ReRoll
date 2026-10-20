@@ -1,0 +1,508 @@
+{
+    "Start_Prologue": {
+        "focus": "▶ 프롤로그 시작",
+        "next": [
+            "Prologue_Input_Name_1",
+            "Prologue_Story1_1",
+            "Prologue_Battle1_Place_OP1_1",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Input_Name_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/1_input_name.png",
+                "roi": [339, 213, 593, 367]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [641, 414, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Prologue_Input_Name_2"
+        ]
+    },
+    "Prologue_Input_Name_2": {
+        "action": {
+            "type": "InputText",
+            "param": {"input_text": "Arknights"}
+        },
+        "next": [
+            "Prologue_Input_Name_3"
+        ]
+    },
+    "Prologue_Input_Name_3": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1212, 673, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Prologue_Input_Name_4"
+        ]
+    },
+    "Prologue_Input_Name_4": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [637, 504, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Prologue_Story1_1"
+        ]
+    },
+    "Prologue_Story1_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/2_story1.png",
+                "roi": [1097, 0, 176, 121]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "Prologue_Story1_2",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Story1_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [796, 460, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "Prologue_Battle1_Place_OP1_1",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle1_Tap_Until_Amiya": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/3_amiya_talking.png",
+                "roi": [24, 22, 202, 209]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [244, 418, 1, 1]
+            }
+        }
+    },
+    "Prologue_Battle1_Place_OP1_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "onboarding/prologue/4_battle1_op1_1.png",
+                    "onboarding/prologue/4_battle1_op1_1_2.png"
+                ],
+                "roi": [1023,587,152,127]
+
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1098, 659, 1, 1],
+                "end": [580, 425, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle1_Place_OP1_2",
+            "Prologue_Battle1_Place_OP1_1",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle1_Place_OP1_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/5_battle1_op1_2.png",
+                "roi": [344,197,92,78]
+
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [581, 407, 1, 1],
+                "end": [833, 408, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle1_Wait_Until_OP2",
+            "Prologue_Battle1_Place_OP1_2",
+            "Prologue_Battle1_Place_OP1_1"
+        ]
+    },
+    "Prologue_Battle1_Wait_Until_OP2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "onboarding/prologue/4_battle1_op1_1.png",
+                    "onboarding/prologue/4_battle1_op1_1_2.png"
+                ],
+                "roi": [1023,587,152,127]
+
+            }
+        },
+        "inverse": true,
+        "next": [
+            "Prologue_Battle1_Place_OP2_1",
+            "Prologue_Battle1_Place_OP1_1",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle1_Place_OP2_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "onboarding/prologue/6_battle1_op2_1.png",
+                    "onboarding/prologue/6_battle1_op2_1_1.png"
+                ],
+                "roi": [1046, 521, 234, 199]
+
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1218, 658, 1, 1],
+                "end": [696, 296, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle1_Place_OP2_2",
+            "Prologue_Battle1_Place_OP2_1"
+        ]
+    },
+    "Prologue_Battle1_Place_OP2_2": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "onboarding/prologue/7_battle1_op2_2.png",
+                                "roi": [557,279,80,30]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "onboarding/prologue/7_battle1_op2_2_1.png",
+                                "roi": [649,235,88,43]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [213,182,149,36],
+                                "expected": ".*어려워.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [694, 296, 1, 1],
+                "end": [917, 294, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle1_Wait_Until_Finish",
+            "Prologue_Battle1_Place_OP2_1"
+        ]
+    },
+    "Prologue_Battle1_Wait_Until_Finish": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "onboarding/prologue/6_battle1_op2_1.png",
+                    "onboarding/prologue/6_battle1_op2_1_1.png"
+                ],
+                "roi": [1046, 521, 234, 199]
+
+            }
+        },
+        "inverse": true,
+        "next": [
+            "Prologue_Story2_1",
+            "[JumpBack]Prologue_Battle1_Tap_Until_Finish"
+        ]
+    },
+    "Prologue_Battle1_Tap_Until_Finish": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [244, 418, 1, 1]
+            }
+        }
+    },
+    "Prologue_Story2_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/8_story2.png",
+                "roi": [1098, 0, 174, 120]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "Prologue_Story2_2"
+        ]
+    },
+    "Prologue_Story2_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [795, 359, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Prologue_Battle2_Start"
+        ]
+    },
+    "Prologue_Battle2_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/3_amiya_talking.png",
+                "roi": [1, 0, 258, 269]
+
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Wait_Until_Texas_Ready"
+        ]
+    },
+    "Prologue_Battle2_Tap_Until_Amiya": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/3_amiya_talking.png",
+                "roi": [1, 0, 258, 269]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [45, 689, 1, 1]
+            }
+        }
+    },
+    "Prologue_Battle2_Wait_Until_Texas_Ready": {
+        "next": [
+            "Prologue_Battle2_Texas_Ready",
+            "[JumpBack]Prologue_Battle2_Tap_Until_Amiya",
+            "[JumpBack]Public_Battle_Speed_2x"
+        ]
+    },
+    "Prologue_Battle2_Texas_Ready": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/10_battle2_ready_texas.png",
+                "roi": [466,212,23,25]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [487, 296, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Use_Texas",
+            "Prologue_Battle2_Texas_Ready",
+            
+            "[JumpBack]Prologue_Battle2_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle2_Use_Texas": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/11_battle2_use_texas.png",
+                "roi": [719, 265, 353, 330]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [879, 424, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Wait_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle2_Wait_Until_Amiya": {
+        "next": [
+            "[JumpBack]Public_Battle_Speed_2x",
+            "Prologue_Battle2_Use_Amiya_1",
+            "[JumpBack]Prologue_Battle2_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle2_Use_Amiya_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/12_battle2_amiya.png",
+                "roi": [625, 58, 134, 134],
+
+                "threshold": 0.9
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [694, 213, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Use_Amiya_2"
+        ]
+    },
+    "Prologue_Battle2_Use_Amiya_2": {
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [877, 424, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Wait_Until_Exusiai"
+        ]
+    },
+    "Prologue_Battle2_Wait_Until_Exusiai": {
+        "next": [
+            "[JumpBack]Public_Battle_Speed_2x",
+            "Prologue_Battle2_Use_Exusiai_1",
+            "[JumpBack]Prologue_Battle2_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Battle2_Use_Exusiai_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/13_battle2_not_exusiai.png",
+                "roi": [1059, 158, 136, 132],
+
+                "threshold": 0.9
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1076, 500, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Use_Exusiai_2"
+        ]
+    },
+    "Prologue_Battle2_Use_Exusiai_2": {
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [880, 427, 1, 1]
+            }
+        },
+        "next": [
+            "Prologue_Battle2_Wait_Until_Finish"
+        ]
+    },
+    "Prologue_Battle2_Wait_Until_Finish": {
+        "next": [
+            "[JumpBack]Public_Battle_Speed_2x",
+            "Prologue_Story_3_1",
+            "[JumpBack]Prologue_Battle2_Tap_Until_Amiya"
+        ]
+    },
+    "Prologue_Story_3_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "onboarding/prologue/14_story3.png",
+                "roi": [1098, 0, 173, 120]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Prologue_Story_3_2"
+        ]
+    },
+    "Prologue_Story_3_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [795, 464, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "Start_Interlude"
+        ]
+    }
+}

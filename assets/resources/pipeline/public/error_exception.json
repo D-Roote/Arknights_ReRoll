@@ -1,0 +1,47 @@
+{
+    "Error_Exception": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    "Error_Popup"
+                ]
+            }
+        },
+        "next": [
+            "OnError_Start_Main"
+        ]
+    },
+    "Error_Popup": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "shared/pub_error_check.png",
+                                "roi": [604, 455, 74, 74]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "ColorMatch",
+                            "param": {
+                                "roi": [604, 455, 74, 74],
+                                "method": 4,
+                                "lower": [0, 0, 0],
+                                "upper": [40, 40, 40],
+                                "count": 3000,
+                                "connected": false
+                            }
+                        }
+                    }
+                ],
+                "box_index": 0
+            }
+        }
+    }
+}

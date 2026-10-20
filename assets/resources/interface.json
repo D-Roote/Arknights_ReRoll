@@ -1,0 +1,479 @@
+{
+    "interface_version": 2,
+    "name": "Arknights Reroll",
+    "version": "1.0",
+    "custom_title": "비틱이 하고 싶어요.",
+    "agent": {
+        "child_exec": "../../.venv/Scripts/python.exe",
+        "child_args": [
+            "-X", "utf8", "-u", "../agent/main.py"
+        ]
+    },
+    "controller": [
+        {"name": "MuMuPlayer", "type": "Adb"}
+    ],
+    "resource": [
+        {
+            "name": "한섭",
+            "path": ["./"]
+        }
+    ],
+    "task": [
+        {
+            "name": "게스트 계정 완전 초기화",
+            "entry": "HReset_Start_Main",
+            "check": true,
+            "doc": "게스트 계정 초기화"
+        },
+        {
+            "name": "리세마라",
+            "entry": "Main",
+            "check": true,
+            "doc": "앱플레이어 해상도 1280x720, DPI 180, 프레임 60fps, adb, root 권한 확인 필수!",
+            "option": [
+                "유저 이름",
+                "리세 방식",
+                "반복 설정",
+                "현재 화면",
+                "저장/종료 조건",
+                "저장/종료 조건 (6성 개수)",
+                "저장/종료 조건 (6성 오퍼레이터)",
+                "픽업 배너",
+                "순오리지늄 사용",
+                "직접 뽑기"
+            ]
+        },
+        {
+            "name": "계정 불러오기",
+            "entry": "Load_Shared_Pref_Main",
+            "check": false,
+            "option": [
+                "파일 이름"
+            ]
+        }
+    ],
+    "option": {
+        "파일 이름": {
+            "label": "resources/saved의 계정 불러오기",
+            "doc": "resources/saved 아래의 백업 폴더 이름만 입력합니다. PC 원본은 유지되며, 기기의 기존 shared_prefs는 교체됩니다.",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "TargetDir",
+                    "label": "불러올 계정",
+                    "default": "",
+                    "pipeline_type": "string",
+                    "verify": "^shared_prefs_[A-Za-z0-9][A-Za-z0-9._-]{0,95}$",
+                    "pattern_msg": "기존 게스트 계정은 영구 삭제됩니다.\n리세마라, 다중 실행과 같이 실행하지 마세요.\nshared_prefs_로 시작하는 백업 폴더 이름을 입력하세요.\n경로와 .png 파일은 입력하지 않습니다."
+                }
+            ],
+            "pipeline_override": {
+                "Load_Shared_Pref_Dir": {
+                    "action": {
+                        "type": "Custom",
+                        "param": {
+                            "custom_action": "ImportArknightsSharedPrefs",
+                            "custom_action_param": {
+                                "source_dir": "{TargetDir}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "유저 이름": {
+            "label": "실행 매개변수",
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "TargetName",
+                    "label": "유저 이름",
+                    "default": "Arknights",
+                    "pipeline_type": "string",
+                    "verify": "^[A-Za-z0-9_-]+$",
+                    "pattern_msg": "사용할 이름"
+                }
+            ],
+            "pipeline_override": {
+                "Prologue_Input_Name_2": {
+                    "action": {
+                        "type": "InputText",
+                        "param": {"input_text": "{TargetName}"}
+                    }
+                }
+            }
+        },
+        "리세 방식": {
+            "doc": "리세 방식을 선택해 주세요.",
+            "cases": [
+                {
+                    "name": "0-11 클리어런 (약 40분)",
+                    "pipeline_override": {
+                        "Home_Popup_Check_Home": {"next": "Restart_0-1"}
+                    }
+                },
+                {
+                    "name": "0-1 퇴각런 (7분)",
+                    "pipeline_override": {
+                        "Home_Reward_Check_Home": {"next": "Start_Gatcha"}
+                    }
+                },
+                {
+                    "name": "0-1 클리어런 (9분)",
+                    "pipeline_override": {
+                        "TR1_2x_01": {
+                            "recognition": {
+                                "type": "Or",
+                                "param": {"any_of": ["TR1_Retreat_Click_Pause"]}
+                            },
+                            "action": {"type": "DoNothing"},
+                            "next": "TR1_Retreat_Click_Pause"
+                        },
+                        "Home_Popup_Check_Home": {"next": "Restart_0-1"}
+                    }
+                }
+            ]
+        },
+        "반복 설정": {
+            "doc": "무한 반복을 활성화 합니다.\n\n성공한 계정은 저장됩니다.",
+            "cases": [
+                {
+                    "name": "무한 반복",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "성공 시 종료",
+                    "pipeline_override": {
+                        "Check_Success": {"next": []}
+                    }
+                }
+            ]
+        },
+        "현재 화면": {
+            "doc": "현재 표시되는 화면을 선택해 주세요.\n\n로그인 화면에서는 기존 계정을 삭제합니다.",
+            "cases": [
+                {
+                    "name": "로그인 (초기화 사용할 시 같이 사용)",
+                    "pipeline_override": {
+                        "Main": {"next": "Start_Login"}
+                    }
+                },
+                {
+                    "name": "오퍼레이터 (계정삭제 진행)",
+                    "pipeline_override": {
+                        "Main": {"next": "Start_Reset"}
+                    }
+                },
+                {
+                    "name": "프롤로그 (1번째 전투)",
+                    "pipeline_override": {
+                        "Main": {"next": "Start_Prologue"}
+                    }
+                },
+                {
+                    "name": "프롤로그 (2번째 전투)",
+                    "pipeline_override": {
+                        "Main": {
+                            "next": [
+                                "Prologue_Story2_1",
+                                "Prologue_Battle2_Start"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "막간 (메인화면 설명)",
+                    "pipeline_override": {
+                        "Main": {"next": "Start_Interlude"}
+                    }
+                },
+                {
+                    "name": "디버그",
+                    "pipeline_override": {
+                        "Main": {"next": "Home_Reward_Claim_Rookie_Mission_3"}
+                    }
+                }
+            ]
+        },
+        "저장/종료 조건": {
+            "doc": "AND - 모든 조건이 만족해야 합니다. OR - 하나의 조건만 만족해도 됩니다.",
+            "cases": [
+                {
+                    "name": "AND",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "OR",
+                    "pipeline_override": {
+                        "Check_Operator_Count_Success": {"next": "Check_Success"},
+                        "Check_Operator_Count_Failed": {"next": "Check_Operator_Name"}
+                    }
+                }
+            ]
+        },
+        "저장/종료 조건 (6성 개수)": {
+            "doc": "리세를 종료할 6성 개수를 골라주세요.",
+            "cases": [
+                {
+                    "name": "0개 이상 (고려 안 함)",
+                    "pipeline_override": {
+                        "Check_Operator_Count": {"next": "Check_Operator_Name"}
+                    }
+                },
+                {
+                    "name": "1개 이상",
+                    "pipeline_override": {
+                        "Check_Operator_Count_Success": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [132,99,6,6]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "2개 이상",
+                    "pipeline_override": {
+                        "Check_Operator_Count_Success": {
+                            "recognition": {
+                                "param": {
+                                    "roi": [132,417,6,6]
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "저장/종료 조건 (6성 오퍼레이터)": {
+            "doc": "리세를 종료할 오퍼레이터를 골라주세요.",
+            "cases": [
+                {
+                    "name": "날리 (켈시 에스페란타)",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/kaltsit_esperanta.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "클로저",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/closure.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "지난 한정 리스트 모두",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "type": "Or",
+                                "param": {
+                                    "any_of": [
+                                        {
+                                            "recognition": {
+                                                "param": {
+                                                    "template": "gacha/check/operators/silverash_the_reignfrost.png"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "recognition": {
+                                                "param": {
+                                                    "template": "gacha/check/operators/pramanix_the_prerita.png"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "recognition": {
+                                                "param": {
+                                                    "template": "gacha/check/operators/hoshiguma_the_breacher.png"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "recognition": {
+                                                "param": {
+                                                    "template": "gacha/check/operators/exusiai_the_new_covenant.png"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "recognition": {
+                                                "param": {
+                                                    "template": "gacha/check/operators/wisadel.png"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "은재 (실버애쉬 더 레인프로스트)",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/silverash_the_reignfrost.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "성녀 (프라마닉스 더 프레리타)",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/pramanix_the_prerita.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "수구마 (호시구마 더 브리처)",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/hoshiguma_the_breacher.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "신시아 (엑시아 더 뉴 커버넌트)",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {
+                                    "template": "gacha/check/operators/exusiai_the_new_covenant.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "위셔델",
+                    "pipeline_override": {
+                        "Check_Operator_Name_Success": {
+                            "recognition": {
+                                "param": {"template": "gacha/check/operators/wisadel.png"}
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "없음 (고려 안 함)",
+                    "pipeline_override": {
+                        "Check_Operator_Name": {"next": "Check_Success"}
+                    }
+                }
+            ]
+        },
+        "픽업 배너": {
+            "doc": "몇 번째 픽업 배너를 선택할지 골라주세요.",
+            "cases": [
+                {
+                    "name": "두번째 (메인 배너)",
+                    "pipeline_override": {
+                        "Gatcha_Select_Headhunting": {"next": "Gatcha_2nd_Headhunting"}
+                    }
+                },
+                {
+                    "name": "세번째",
+                    "pipeline_override": {
+                        "Gatcha_Select_Headhunting": {"next": "Gatcha_3rd_Headhunting"}
+                    }
+                },
+                {
+                    "name": "네번째",
+                    "pipeline_override": {
+                        "Gatcha_Select_Headhunting": {"next": "Gatcha_4th_Headhunting"}
+                    }
+                },
+                {
+                    "name": "첫번째 (신규 유저 배너)",
+                    "pipeline_override": {
+                        "Gatcha_Select_Headhunting": {"next": "Gatcha_1st_Headhunting"}
+                    }
+                }
+            ]
+        },
+        "순오리지늄 사용": {
+            "doc": "해당 옵션을 활성화하면 순오리지늄도 사용하여 리세를 진행합니다.",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "Gatcha_10roll_originite_prime": {
+                            "action": {
+                                "type": "Click",
+                                "param": {
+                                    "target": [305, 505, 1, 1]
+                                }
+                            },
+                            "next": [
+                                "[JumpBack]Error_Exception",
+                                "Gatcha_Try_1roll"
+                            ]
+                        },
+                        "Gatcha_1roll_originite_prime": {
+                            "action": {
+                                "type": "Click",
+                                "param": {
+                                    "target": [305, 505, 1, 1]
+                                }
+                            },
+                            "next": [
+                                "[JumpBack]Error_Exception",
+                                "Gatcha_Goto_Operator1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "직접 뽑기": {
+            "doc": "해당 옵션을 활성화하면 **종료 조건을 무시하고** 가챠 직전에서 리세가 종료됩니다.",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "Gatcha_Wait_Until_10roll": {
+                            "next": []
+                        },
+                        "Gatcha_Wait_Until_1roll": {
+                            "next": []
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

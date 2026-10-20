@@ -1,0 +1,418 @@
+{
+    /* 가챠하려고 홈화면 온 이후부터 가챠까지 */
+    /* TODO: 퇴각런 아니면 신입 입무 같은거 받아야 함 */
+    "Start_Gatcha": {
+        "focus": "▶ 가챠 시작",
+        "next": [
+            "[JumpBack]Home_Popup_Notice",
+            "Gatcha_Goto_Headhunting"
+        ]
+    },
+    "Gatcha_Goto_Headhunting": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/5_headhunting.png",
+                "roi": [1068, 480, 212, 94]
+                // [1093, 505, 172, 44]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Select_Headhunting",
+            "Gatcha_Handle_No_Voice",
+            "Gatcha_Goto_Headhunting"
+        ]
+    },
+    "Gatcha_Handle_No_Voice": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/6_handle_no_voice.png",
+                "roi": [41, 148, 1150, 403]
+                // [66, 173, 1100, 353]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [446, 495, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Select_Headhunting",
+            "Gatcha_Handle_No_Voice"
+        ]
+    },
+    "Gatcha_Select_Headhunting": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/7_headhunting_home.png",
+                "roi": [0, 0, 454, 148]
+                // "origin roi" : [17,15,354,48]
+            }
+        },
+        "next": [
+            "Gatcha_2nd_Headhunting"
+        ]
+    },
+    "Gatcha_4th_Headhunting": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1253, 392, 1, 1]
+            }
+        },
+        "next": [
+            "Gatcha_3rd_Headhunting"
+        ]
+    },
+    "Gatcha_3rd_Headhunting": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1253, 392, 1, 1]
+            }
+        },
+        "next": [
+            "Gatcha_2nd_Headhunting"
+        ]
+    },
+    "Gatcha_2nd_Headhunting": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1253, 392, 1, 1]
+            }
+        },
+        "next": [
+            "Gatcha_1st_Headhunting"
+        ]
+    },
+    "Gatcha_1st_Headhunting": {
+        "focus": "!!! 가챠 시작합니다 !!!",
+        "next": [
+            "Gatcha_Try_10roll"
+        ]
+    },
+    "Gatcha_Try_10roll": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/7_headhunting_home.png",
+                "roi": [0, 0, 454, 148]
+                // "origin roi" : [17,15,354,48]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1103, 647, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_10roll_orundum",
+            "Gatcha_10roll_originite_prime",
+            "Gatcha_10roll_ticket",
+            "Gatcha_Try_10roll"
+        ]
+    },
+    "Gatcha_10roll_orundum": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/8_gatcha_orundum_roll.png",
+                "roi": [381, 134, 504, 225]
+                // "origin roi" : [431,184,404,125]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [939, 514, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Wait_Until_10roll",
+            "Gatcha_10roll_orundum"
+        ]
+    },
+    "Gatcha_10roll_originite_prime": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/9_gatcha_originite_prime.png",
+                "roi": [331, 144, 602, 226]
+                // "origin roi" : [381,194,502,126]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [937, 506, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_10roll_failed",
+            "Gatcha_Wait_Until_10roll",
+            "Gatcha_10roll_originite_prime"
+        ]
+    },
+    "Gatcha_10roll_ticket": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/9.5_gatcha_ticket.png",
+                "roi": [577, 236, 123, 149]
+                // "origin roi" : [602, 261, 73, 99]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [909, 516, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Wait_Until_10roll",
+            "Gatcha_10roll_ticket"
+        ]
+    },
+    "Gatcha_10roll_failed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/11_gatcha_failed.png",
+                "roi": [0, 212, 1280, 355]
+                // "origin roi" : [5,262,1273,255]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [290, 482, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Try_1roll",
+            "Gatcha_10roll_failed"
+        ]
+    },
+    "Gatcha_Wait_Until_10roll": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/12_gatcha_start.png",
+                "roi": [1126, 0, 154, 166]
+                // "origin roi" : [1176,10,93,66]
+            }
+        },
+        "pre_delay": 1000,
+        "next": [
+            "Gatcha_Tap_More_10roll",
+            "[JumpBack]Gatcha_Tap_Until_10roll"
+        ]
+    },
+    "Gatcha_Tap_Until_10roll": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1261, 16, 1, 1]
+            }
+        }
+    },
+    // 10연차 후에 결과창 넘기는게 잘 안 돼서 클릭 몇 번 더 해줌
+    "Gatcha_Tap_More_10roll": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/7_headhunting_home.png",
+                "roi": [0, 0, 454, 148]
+                // "origin roi" : [17,15,354,48]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1261, 16, 1, 1]
+            }
+        },
+        "repeat": 4,
+        "repeat_delay": 500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Try_10roll",
+            "Gatcha_Tap_More_10roll"
+        ]
+    },
+    "Gatcha_Try_1roll": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/7_headhunting_home.png",
+                "roi": [0, 0, 454, 148]
+                // "origin roi" : [17,15,354,48]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [897, 648, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_1roll_free",
+            "Gatcha_1roll_orundum",
+            "Gatcha_1roll_originite_prime",
+            "Gatcha_Try_1roll"
+        ]
+    },
+    "Gatcha_1roll_free": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/10_gatcha_free.png",
+                "roi": [0, 114, 1280, 467]
+                // "origin roi" : [5,164,1274,367]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [840, 494, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Wait_Until_1roll",
+            "Gatcha_1roll_free"
+        ]
+    },
+    "Gatcha_1roll_orundum": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/8_gatcha_orundum_roll.png",
+                "roi": [381, 134, 504, 225]
+                // "origin roi" : [431,184,404,125]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [939, 514, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Wait_Until_1roll",
+            "Gatcha_1roll_orundum"
+        ]
+    },
+    "Gatcha_1roll_originite_prime": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/9_gatcha_originite_prime.png",
+                "roi": [331, 144, 602, 226]
+                // "origin roi" : [381,194,502,126]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [937, 506, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_1roll_failed",
+            "Gatcha_Wait_Until_1roll",
+            "Gatcha_1roll_originite_prime"
+        ]
+    },
+    "Gatcha_1roll_failed": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/11_gatcha_failed.png",
+                "roi": [0, 212, 1280, 355]
+                // "origin roi" : [5,262,1273,255]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [290, 482, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Goto_Operator1"
+        ]
+    },
+    "Gatcha_Wait_Until_1roll": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/12_gatcha_start.png",
+                "roi": [1126, 0, 154, 166]
+                // "origin roi" : [1176,10,93,66]
+            }
+        },
+        "next": [
+            "Gatcha_Try_1roll",
+            "[JumpBack]Gatcha_Tap_Until_1roll"
+        ]
+    },
+    "Gatcha_Tap_Until_1roll": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1261, 16, 1, 1]
+            }
+        }
+    },
+    "Gatcha_Goto_Operator1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [269, 35, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Gatcha_Goto_Operator2"
+        ]
+    },
+    "Gatcha_Goto_Operator2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/13_operator.png",
+                "roi": [235, 79, 182, 273]
+                // "origin roi" : [285,129,82,173]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Start_Check"
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "Public_Pause_Fix": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [483,285,316,85],
+                "expected": ".*[Pp][Aa][Uu][Ss][Ee].*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1200, 50, 1, 1]
+            }
+        }
+    }
+}

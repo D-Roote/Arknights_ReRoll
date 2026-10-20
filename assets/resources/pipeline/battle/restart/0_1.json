@@ -1,0 +1,158 @@
+{
+    "Restart_0-1": {
+        "focus": "▶ 재편성", 
+        "next": [
+            "Tap_Squad",
+            "[JumpBack]Home_Popup_Notice"
+        ]
+    },
+    "Tap_Squad": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [695, 308, 102, 63],
+                "expected": ".*편성.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [790, 355, 1, 1]
+            }
+        },
+        "post_delay": 2000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Handle_No_Voice",
+            "Unselect_Squad"
+        ]
+    },
+    "Handle_No_Voice": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/draw/6_handle_no_voice.png",
+                "roi": [41, 148, 1150, 403]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [446, 495, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Unselect_Squad",
+            "Handle_No_Voice"
+        ]
+    },
+    "Unselect_Squad": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_11/1_squad_1.png",
+                "roi": [955, 363, 138, 356]
+            }
+        },
+        "next": [
+            "Unselect_Target_Click"
+        ]
+    },
+    "Unselect_Target_Click": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [560, 210, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Deselect_Operator"
+        ]
+    },
+    "Deselect_Operator": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_11/2_remove.png",
+                "roi": [987, 654, 247, 51]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [444, 205, 1, 1]
+            }
+        },
+        "next": [
+            "Rp_Deselect_End"
+        ]
+    },
+    "Rp_Deselect_End": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1116, 680, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Rp_Back_Home"
+        ]
+    },
+    "Rp_Back_Home": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_11/3_rp_home.png",
+                "roi": [162, 13, 208, 49]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Rp_Back_Story",
+            "Rp_Back_Home"
+        ]
+    },
+    "Rp_Back_Story": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [499, 89, 62, 38],
+                "expected": ".*작전.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Rp_Mission",
+            "Rp_Back_Story"
+        ]
+    },
+    "Rp_Mission": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_11/5_mission_main.png",
+                "roi": [963, 531, 293, 91]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Clear_Start_01"
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+# Virtual environments
+.venv/
+venv/
+.env/
+env/
+.evn/
+evn/
+
+# User configuration and generated runtime files
+assets/user/
+assets/resources/config/
+assets/resources/debug/
+assets/saved/
+assets/failed/
+
+# Local OCR Model
+assets/resources/model/**
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer Logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+#Cache
+__pycache__/
+assets/**/__pycache__/
+assets/**/*.pyc
+*$py.class
+*.py[cod]
+*.pyd
+
+# Test and analysis caches
+/.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+dist/
+build/
+*.egg-info/
+
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

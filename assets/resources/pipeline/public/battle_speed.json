@@ -1,0 +1,19 @@
+{
+    "Public_Battle_Speed_2x": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/11/11_1x.png",
+                "roi": [1053, 7, 90, 88]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "pre_delay": 0,
+        "next": []
+    }
+}

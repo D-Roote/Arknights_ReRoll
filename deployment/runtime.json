@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "app_repository": "D-Roote/MFWSide",
+  "app_tag": "v1.0",
+  "maafw_version": "5.12.3",
+  "python": {
+    "version": "3.13.10",
+    "url": "https://api.nuget.org/v3-flatcontainer/python/3.13.10/python.3.13.10.nupkg",
+    "sha256": "d89c1f564ecf7b8aceae1f60b8b1d971e04e5cd7d5f3ad9dfd5c646b43e722f9"
+  },
+  "ocr": {
+    "files": {
+      "det.onnx": "4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae",
+      "keys.txt": "a88071c68c01707489baa79ebe0405b7beb5cca229f4fc94cc3ef992328802d7",
+      "rec.onnx": "cd6e2ea50f6943ca7271eb8c56a877a5a90720b7047fe9c41a2e541a25773c9b"
+    }
+  }
+}

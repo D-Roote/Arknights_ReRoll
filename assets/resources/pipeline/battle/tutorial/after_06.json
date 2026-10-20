@@ -1,0 +1,126 @@
+{
+    "06_End_Tutorial": {
+        "focus": "▶ 추가 튜토리얼 시작",
+        "next": "06_Sk_Tutorial"
+    },
+    "06_Sk_Tutorial": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1055, 355, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Sk_1",
+            "06_Sk_Tutorial"
+        ]
+    },
+    "06_Sk_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/04/04_op_1.png",
+                "roi": [1049, 23, 102, 31]
+            }
+        },
+        "next": [
+            "06_Sk_2"
+        ]
+    },
+    "06_Sk_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [90, 300, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Sk_3",
+            "06_Sk_2"
+        ]
+    },
+    "06_Sk_3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/06/06_sk_03.png",
+                "roi": [1166, 319, 57, 139]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1196, 396, 1, 1]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Sk_4"
+        ]
+    },
+    "06_Sk_4": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1123, 615, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Escape_Rec"
+        ]
+    },
+    "06_Escape_Rec": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [270, 35, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Back_Story",
+            "06_Escape_Rec"
+        ]
+    },
+    "06_Back_Story": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [499, 89, 62, 38],
+                "expected": ".*작전.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 5000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "06_Mission",
+            "06_Back_Story"
+        ]
+    },
+    "06_Mission": {
+        "pre_delay": 500,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/06/06_mission.png",
+                "roi": [967, 559, 287, 62]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Clear_Start_TR5"
+        ]
+    }
+}

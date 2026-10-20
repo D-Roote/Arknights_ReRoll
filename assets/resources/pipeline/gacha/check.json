@@ -1,0 +1,102 @@
+{
+    "Start_Check": {
+        "focus": "▶ 가챠 확인중...",
+        "next": "Check_Operator_Screen"
+    },
+    "Check_Operator_Screen": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "shared/operator_screen.png",
+                "roi": [671, 0, 543, 149]
+            }
+        },
+        "next": [
+            "Check_Operator_Count"
+        ]
+    },
+    "Check_Operator_Count": {
+        "next": [
+            "Check_Operator_Count_Success",
+            "Check_Operator_Count_Failed"
+        ]
+    },
+    "Check_Operator_Count_Success": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [132,99,6,6],
+                "lower": [219, 190, 0],
+                "upper": [255, 233, 4],
+                "count": 15
+            }
+        },
+        "focus": "- 6성 개수 확인",
+        "next": [
+            "Check_Operator_Name"
+        ]
+    },
+    "Check_Operator_Count_Failed": {"next": "Check_Failed"},
+    "Check_Operator_Name": {
+        "next": [
+            "Check_Operator_Name_Success",
+            "Check_Failed"
+        ]
+    },
+    "Check_Operator_Name_Success": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "gacha/check/operators/togawa_sakiko.png",
+                "roi": [9, 77, 1270, 620],
+                "threshold": 0.925
+            }
+        },
+        "focus": "- 6성 요원 확인",
+        "next": [
+            "Check_Success"
+        ]
+    },
+    "Check_Operator_Name_Failed": {"next": "Check_Failed"},
+    "Check_Success": {
+        "focus": "!!! 리세 성공 !!!",
+        "next": [
+            "Check_Operator_Capture"
+        ]
+    },
+    "Check_Operator_Capture": {
+        "focus": "▶ 오퍼레이터 화면 저장",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "CaptureArknightsOperators",
+                "custom_action_param": {
+                    "save_dir": "saved",
+                    "link_backup": true
+                }
+            }
+        },
+        "next": [
+            "Start_Saved_Reset"
+        ],
+        "on_error": []
+    },
+    "Check_Failed": {
+        "focus": "XXX 리세 실패 XXX",
+        "next": "Check_Failed_Record"
+    },
+    "Check_Failed_Record": {
+        "focus": "▶ 리세 실패 화면 저장",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "CaptureArknightsOperators",
+                "custom_action_param": {
+                    "save_dir": "failed",
+                    "link_backup": false
+                }
+            }
+        },
+        "next": "Start_Reset"
+    }
+}

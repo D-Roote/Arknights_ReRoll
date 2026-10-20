@@ -1,0 +1,95 @@
+{
+    "09_End_Tutorial": {
+        "focus": "▶ 추가 튜토리얼 시작",
+        "next": "09_Mi_Tutorial"
+    },
+    "09_Mi_Tutorial": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/amiya_dialogue.png",
+                "roi": [60, 64, 136, 136]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [750, 600, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "09_Mi_01",
+            "09_Mi_Tutorial"
+        ]
+    },
+    "09_Mi_01": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/09/09_ami_dia_2.png",
+                "roi": [87, 496, 142, 145]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [270, 40, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "09_Mi_02"
+        ]
+    },
+    "09_Mi_02": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [270, 40, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "09_Back_Story",
+            "09_Mi_02"
+        ]
+    },
+    "09_Back_Story": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [499, 89, 62, 38],
+                "expected": ".*작전.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 5000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "09_Mission",
+            "09_Back_Story"
+        ]
+    },
+    "09_Mission": {
+        "pre_delay": 500,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/09/09_mission.png",
+                "roi": [966, 558, 288, 62]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Clear_Start_TR7"
+        ]
+    }
+}

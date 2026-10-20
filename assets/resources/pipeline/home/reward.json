@@ -1,0 +1,238 @@
+{
+    "Start_Home_Reward": {
+        "focus": "▶ 홈 보상 시작",
+        "next": [
+            "[JumpBack]Home_Reward_Birthday",
+            "Home_Reward_Handle_Reward",
+            "[JumpBack]Home_Popup_Any_Popup"
+        ]
+    },
+    "Home_Reward_Birthday": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/birthday.png",
+                "roi": [238, 236, 791, 218]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1169, 118, 1, 1]
+            }
+        }
+    },
+    "Home_Reward_Handle_Reward": {
+        "next": [
+            "[JumpBack]Home_Reward_Birthday",
+            "Home_Reward_Get_Mail_1",
+            "[JumpBack]Home_Popup_Any_Popup"
+        ]
+    },
+    "Home_Reward_Get_Mail_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/4.5_is_main.png",
+                "roi": [665, 298, 563, 125]
+
+            }
+        },
+        "pre_delay": 1000,
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [193, 41, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Home_Reward_Birthday",
+            "Home_Reward_Get_Mail_2",
+            "Home_Reward_Get_Mail_1"
+        ]
+    },
+    "Home_Reward_Get_Mail_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/5_get_mail.png",
+                "roi": [1040, 35, 240, 685]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1140, 665, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Reward_Wait_Until_Mail_Received"
+        ]
+    },
+    "Home_Reward_Wait_Until_Mail_Received": {
+        "next": [
+            "Home_Reward_Mail_Received",
+            "[JumpBack]Home_Reward_Tap_Until_Mail_Received"
+        ]
+    },
+    "Home_Reward_Tap_Until_Mail_Received": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1192, 44, 1, 1]
+            }
+        }
+    },
+    "Home_Reward_Mail_Received": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/6_received_mail.png",
+                "roi": [1041, 36, 239, 684]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [89, 46, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Reward_Mail_Received_Click"
+        ]
+    },
+    "Home_Reward_Mail_Received_Click": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [89, 46, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Home_Popup_Notice",
+            "[JumpBack]Home_Popup_Any_Popup",
+            "Home_Reward_Check_Home",
+            "Home_Reward_Mail_Received",
+            "Home_Reward_Mail_Received_Click"
+        ]
+    },
+    "Home_Reward_Check_Home": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/4.5_is_main.png",
+                "roi": [665, 298, 563, 125]
+
+            }
+        },
+        "pre_delay": 1000,
+        "next": [
+            "Home_Reward_Enter_Rookie_Mission"
+        ]
+    },
+    "Home_Reward_Enter_Rookie_Mission": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [416, 38, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Home_Popup_Notice",
+            "Home_Reward_Claim_Rookie_Mission_1",
+            "Home_Reward_Enter_Rookie_Mission"
+        ]
+    },
+    "Home_Reward_Claim_Rookie_Mission_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/3_rookie_mission.png",
+                "roi": [238, 208, 499, 305]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [118, 222, 1, 1]
+            }
+        },
+        "post_delay": 3000,
+        "next": [
+            "Home_Reward_Claim_Rookie_Mission_2",
+            "Home_Reward_Claim_Rookie_Mission_1",
+            "Home_Reward_Enter_Rookie_Mission"
+        ]
+    },
+    "Home_Reward_Claim_Rookie_Mission_2": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [789,180,67,28],
+                "expected": ".*합성옥.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1035, 188, 1, 1]
+            }
+        },
+        "post_delay":3000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Reward_Claim_Rookie_Mission_2",
+            "Home_Reward_Claim_Rookie_Mission_3"
+        ]
+    },
+    "Home_Reward_Claim_Rookie_Mission_3": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640, 600, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Reward_Claim_Rookie_Mission_4",
+            "Home_Reward_Claim_Rookie_Mission_3"
+        ]
+    },
+    "Home_Reward_Claim_Rookie_Mission_4": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/rookie_mission_claimed.png",
+                "roi": [901, 110, 296, 152]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1246, 55, 1, 1]
+            }
+        },
+        "post_delay": 5000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Reward_Claim_Rookie_Mission_4",
+            "Home_Reward_Exit_Rookie_Mission"
+        ]
+    },
+    "Home_Reward_Exit_Rookie_Mission": {
+        "next": [
+            "Event_Changable",
+            "Start_Gatcha"
+        ]
+    }
+}

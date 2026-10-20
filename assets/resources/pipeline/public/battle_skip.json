@@ -1,0 +1,52 @@
+{
+    "Public_Battle_Skip": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1135, 30, 100, 45],
+                "expected": "[Ss][Kk][Ii][Pp]"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": []
+    },
+    "Public_Battle_Skip_Chk": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "battle/stage/01/01_skip_check.png"
+                ],
+                "roi": [740, 305, 120, 210]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": []
+    },
+
+
+    "Public_Battle_Skip_Template_Original": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/01/01_TR1_skip.png",
+                "roi": [1144, 40, 79, 28]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": []
+    }
+}

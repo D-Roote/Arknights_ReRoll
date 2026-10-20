@@ -1,0 +1,806 @@
+/* =========================================
+   전체 기본 폰트 및 배경 설정
+   ========================================= */
+QWidget {
+    background-color: transparent;
+    color: #334155;
+    font-family: "Malgun Gothic", "Segoe UI", sans-serif;
+    font-size: 10pt;
+}
+
+QMainWindow {
+    background-color: #FFFFFF;
+}
+
+QWidget#centralwidget,
+QWidget#mainTab,
+QWidget#extraFeaturesTab,
+QWidget#settingTab {
+    background-color: #F4F7FB;
+}
+
+QWidget#appHeader {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+QLabel#appBrandLabel {
+    color: #172B4D;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+QPushButton#dashboardNavButton,
+QPushButton#extraFeaturesNavButton,
+QPushButton#settingsNavButton {
+    min-width: 78px;
+    min-height: 34px;
+    padding: 4px 14px;
+    border-radius: 7px;
+    background-color: transparent;
+    color: #64748B;
+    font-weight: bold;
+}
+
+QPushButton#dashboardNavButton:hover,
+QPushButton#extraFeaturesNavButton:hover,
+QPushButton#settingsNavButton:hover {
+    background-color: #EFF6FD;
+    color: #176AA0;
+}
+
+QPushButton#dashboardNavButton:checked,
+QPushButton#extraFeaturesNavButton:checked,
+QPushButton#settingsNavButton:checked {
+    background-color: #E6F5FC;
+    color: #006E94;
+}
+
+QWidget#_1_settingStartWidget,
+QWidget#_2_settingWidget,
+QWidget#_3_logPrintWidget {
+    background-color: #FFFFFF;
+    border: 1px solid #DFE7F0;
+    border-radius: 12px;
+}
+
+QLabel#workspaceSectionTitle {
+    color: #1D3150;
+    font-size: 11pt;
+    font-weight: bold;
+    min-height: 24px;
+    padding: 0px;
+}
+
+QLabel#optionEmptyState {
+    color: #94A3B8;
+    font-size: 10pt;
+}
+
+QSplitter#workspaceSplitter::handle:horizontal {
+    background-color: transparent;
+}
+
+QScrollArea#monitorScrollArea,
+QWidget#monitorSectionsWidget {
+    background-color: transparent;
+    border: none;
+}
+
+QFrame#monitorSection,
+QFrame#monitorLogSection {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+}
+
+QWidget#monitorSectionHeader,
+QWidget#monitorSectionContent,
+QWidget#monitorLogContent {
+    background-color: transparent;
+}
+
+QLabel#monitorDragHandle {
+    color: #94A3B8;
+    font-size: 11pt;
+    padding: 0px 5px;
+}
+
+QToolButton#monitorSectionToggle {
+    min-height: 24px;
+    border: none;
+    background-color: transparent;
+    color: #334155;
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: left;
+    padding: 2px 4px;
+}
+
+QToolButton#monitorSectionToggle:hover {
+    color: #006E94;
+}
+
+QLabel#monitorFutureDescription {
+    color: #64748B;
+    font-size: 9pt;
+}
+
+QPushButton#workStartBtn {
+    font-size: 11pt;
+    border-radius: 8px;
+}
+
+QScrollArea#scrollSettingWidget {
+    border: none;
+}
+
+QFrame#line,
+QFrame#line_4 {
+    min-height: 1px;
+    max-height: 1px;
+    border: none;
+    background-color: #E2E8F0;
+}
+
+/* =========================================
+   리스트 위젯 (작업 목록, QListWidget)
+   ========================================= */
+QListWidget {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 2px;
+    padding-top: 8px;
+    outline: none;
+}
+
+QListWidget::item {
+    background: transparent;
+    border: none;
+}
+
+QListWidget#taskOptionList::item {
+    border-radius: 6px;
+}
+
+QFrame#taskListContainer {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+}
+
+QListWidget#taskOptionList {
+    border: none;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0px;
+}
+
+QFrame#taskListSeparator {
+    border: none;
+    background-color: #E2E8F0;
+}
+
+QStackedWidget#taskListActionsStack {
+    background-color: transparent;
+    border: none;
+}
+
+QWidget#taskDeletePage {
+    background-color: #F8FAFC;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QWidget#taskListFooter {
+    background-color: #00AEEF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QWidget#taskListFooter[groupHovered="true"]:!disabled {
+    background-color: #009BD6;
+}
+
+QWidget#taskListFooter:disabled {
+    background-color: #CBD5E0;
+}
+
+QFrame#taskDeleteDropZone {
+    background-color: transparent;
+    border: 1px solid #EF4444;
+    border-radius: 4px;
+}
+
+QLabel#taskDeleteLabel {
+    background-color: transparent;
+    color: #EF4444;
+    font-size: 8pt;
+    font-weight: bold;
+}
+
+QListWidget::item:hover {
+    background-color: #F8FAFC;
+}
+
+QListWidget::item:selected {
+    background: transparent;
+    border: none;
+}
+
+/* =========================================
+   버튼 (QPushButton)
+   ========================================= */
+QPushButton {
+    background-color: #00AEEF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 8px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #009BD6;
+}
+
+QPushButton:pressed {
+    background-color: #0087BA;
+}
+
+QPushButton:disabled {
+    background-color: #CBD5E0;
+    color: #A0AEC0;
+}
+
+QPushButton#taskResetButton {
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 5px;
+}
+
+QPushButton#taskAddButton {
+    background-color: transparent;
+    border-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 5px;
+    padding-left: 0px;
+    padding-right: 34px;
+}
+
+QPushButton#taskResetButton:hover,
+QPushButton#taskResetButton:pressed,
+QPushButton#taskResetButton:disabled,
+QPushButton#taskAddButton:hover,
+QPushButton#taskAddButton:pressed,
+QPushButton#taskAddButton:disabled {
+    background-color: transparent;
+}
+
+QListWidget#taskPickerPopup {
+    margin: 0px;
+    padding: 4px;
+    border-radius: 6px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+QListWidget#taskPickerPopup::item {
+    padding: 0px 8px;
+    border-radius: 4px;
+}
+
+QListWidget#taskPickerPopup::item:hover,
+QListWidget#taskPickerPopup::item:selected {
+    background-color: #00AEEF;
+    color: #FFFFFF;
+}
+
+QToolTip {
+    background-color: #F8FAFC;
+    color: #334155;
+    font-size: 7.5pt;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    padding: 3px 5px;
+}
+
+QPushButton#taskSettingsButton,
+QPushButton#endSettingBtn {
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+}
+
+QLabel#endWorkStatusLabel {
+    color: #475569;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+QLabel#endStatusLabel,
+QLabel#afterActionHint {
+    color: #64748B;
+    font-size: 8.5pt;
+}
+
+QWidget#settingStartWidget_2 QFrame#line {
+    background-color: #E2E8F0;
+    border: none;
+}
+
+QCheckBox#afterActionChoice {
+    spacing: 8px;
+}
+
+QPushButton#stopBtn {
+    background-color: #FF5A5A;
+}
+QPushButton#stopBtn:hover {
+    background-color: #E04848;
+}
+
+/* =========================================
+   동적 생성 UI (체크박스, 라디오버튼)
+   ========================================= */
+QWidget#OptionItemWidget, QWidget > QLabel {
+    background-color: transparent;
+}
+
+QLabel#taskItemLabel[muted="true"] {
+    color: #94A3B8;
+}
+
+QLabel#optionGroupTitle {
+    margin-top: 6px;
+    font-size: 10pt;
+    font-weight: 500;
+}
+
+QComboBox#monitorComboBox,
+QLineEdit#monitorLineEdit {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    min-height: 22px;
+    padding: 4px 6px;
+    font-size: 9pt;
+}
+
+QComboBox#monitorComboBox {
+    combobox-popup: 0;
+    padding-right: 26px;
+}
+
+QComboBox#monitorComboBox:hover,
+QComboBox#monitorComboBox:focus,
+QLineEdit#monitorLineEdit:focus {
+    border-color: #00AEEF;
+}
+
+QComboBox#monitorComboBox:disabled {
+    color: #94A3B8;
+}
+
+QComboBox#monitorComboBox::down-arrow {
+    image: url("maabaicons:actions/chevron-down.svg");
+    width: 14px;
+    height: 14px;
+}
+
+QComboBox#monitorComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    selection-background-color: #DDEFF8;
+    selection-color: #006E94;
+    outline: none;
+}
+
+QComboBox#monitorComboBox::drop-down {
+    border: none;
+    width: 22px;
+}
+
+QPushButton#monitorActionButton {
+    border: 1px solid #DFE7F0;
+    border-radius: 6px;
+    background-color: #EDF2F7;
+    color: #52647B;
+    min-height: 24px;
+    padding: 2px 6px;
+    font-size: 8pt;
+}
+
+QPushButton#monitorActionButton:hover {
+    background-color: #E0EAF3;
+    color: #006E94;
+}
+
+QPushButton#monitorActionButton:disabled {
+    color: #94A3B8;
+}
+
+QFrame#screenPreview {
+    background-color: #F1F5F9;
+    color: #64748B;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+}
+
+QLabel#monitorStatus {
+    color: #64748B;
+    font-size: 9pt;
+}
+
+QLabel#optionGroupTitle[firstGroup="true"] {
+    margin-top: 0px;
+}
+
+QFrame#optionGroupSeparator {
+    border: none;
+    background-color: #E2E8F0;
+}
+
+QLabel#optionChoiceLabel,
+QLabel#optionInputLabel {
+    background-color: transparent;
+    font-size: 10pt;
+}
+
+QCheckBox {
+    spacing: 6px;
+    background-color: transparent;
+}
+
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    subcontrol-origin: margin;
+    subcontrol-position: center left;
+    image: url("maabaicons:controls/checkbox-unchecked.svg");
+}
+
+QCheckBox::indicator:unchecked:hover {
+    image: url("maabaicons:controls/checkbox-unchecked-hover.svg");
+}
+
+QCheckBox::indicator:checked {
+    image: url("maabaicons:controls/checkbox-checked.svg");
+}
+
+QCheckBox::indicator:checked:hover {
+    image: url("maabaicons:controls/checkbox-checked-hover.svg");
+}
+
+QCheckBox::indicator:unchecked:disabled {
+    image: url("maabaicons:controls/checkbox-unchecked-disabled.svg");
+}
+
+QCheckBox::indicator:checked:disabled {
+    image: url("maabaicons:controls/checkbox-checked-disabled.svg");
+}
+
+QRadioButton {
+    spacing: 8px;
+    background-color: transparent;
+}
+
+QRadioButton::indicator {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    subcontrol-origin: margin;
+    subcontrol-position: center left;
+    image: url("maabaicons:controls/radio-unchecked.svg");
+}
+
+QRadioButton::indicator:unchecked:hover {
+    image: url("maabaicons:controls/radio-unchecked-hover.svg");
+}
+
+QRadioButton::indicator:checked {
+    image: url("maabaicons:controls/radio-checked.svg");
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url("maabaicons:controls/radio-checked-hover.svg");
+}
+
+QRadioButton::indicator:unchecked:disabled {
+    image: url("maabaicons:controls/radio-unchecked-disabled.svg");
+}
+
+QRadioButton::indicator:checked:disabled {
+    image: url("maabaicons:controls/radio-checked-disabled.svg");
+}
+
+QLineEdit#optionInput {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    padding: 7px 9px;
+    min-height: 20px;
+    selection-background-color: #00AEEF;
+}
+
+QLineEdit#optionInput:hover,
+QLineEdit#optionInput:focus {
+    border-color: #00AEEF;
+}
+
+QLineEdit#optionInput[inputValid="false"] {
+    border-color: #E04848;
+}
+
+QLineEdit#optionInput:disabled {
+    background-color: #E6EDF5;
+    color: #94A3B8;
+}
+
+QLabel#optionInputError {
+    background-color: transparent;
+    color: #E04848;
+    font-size: 9pt;
+}
+
+QComboBox#optionSelect {
+    /* Keep a bounded list with a scrollbar instead of a native menu popup. */
+    combobox-popup: 0;
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    padding: 6px 30px 6px 10px;
+    min-height: 24px;
+}
+
+QComboBox#optionSelect:hover {
+    border-color: #00AEEF;
+    background-color: #F0F8FC;
+}
+
+QComboBox#optionSelect:disabled {
+    background-color: #E2E8F0;
+    color: #94A3B8;
+}
+
+QComboBox#optionSelect::drop-down {
+    border: none;
+    width: 28px;
+}
+
+QComboBox#optionSelect QAbstractItemView {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    selection-background-color: #00AEEF;
+    selection-color: #FFFFFF;
+    outline: none;
+}
+
+QComboBox#optionSelect QAbstractItemView::item {
+    min-height: 34px;
+    padding: 0px 10px;
+}
+
+QComboBox#optionSelect QAbstractItemView::item:hover {
+    background-color: #E6F5FC;
+    color: #006E94;
+}
+
+QComboBox#optionSelect QAbstractItemView::item:selected {
+    background-color: #00AEEF;
+    color: #FFFFFF;
+}
+
+/* =========================================
+   로그 출력 (QTextEdit)
+   ========================================= */
+QTextEdit {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    color: #4A5568;
+    padding: 8px;
+}
+
+QTextEdit#logPrintText {
+    padding-right: 1px;
+}
+
+QMenu#logContextMenu {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QMenu#logContextMenu::item {
+    background-color: transparent;
+    color: #334155;
+    padding: 7px 22px;
+}
+
+QMenu#logContextMenu::item:selected:enabled {
+    background-color: #E6F5FC;
+    color: #006E94;
+}
+
+QMenu#logContextMenu::item:disabled {
+    color: #94A3B8;
+}
+
+QMenu#logContextMenu::separator {
+    background-color: #E2E8F0;
+    height: 1px;
+    margin: 4px 8px;
+}
+
+QLabel#logTitleLabel {
+    color: #64748B;
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+QWidget#logActionMenu {
+    background-color: #EDF2F7;
+    border-radius: 6px;
+}
+
+QToolButton#logLatestButton,
+QToolButton#logCopyButton,
+QToolButton#logClearButton,
+QToolButton#logSaveButton,
+QToolButton#logMenuToggleButton {
+    min-height: 22px;
+    padding: 2px 3px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #52647B;
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+QToolButton#logLatestButton:hover,
+QToolButton#logCopyButton:hover,
+QToolButton#logClearButton:hover,
+QToolButton#logSaveButton:hover,
+QToolButton#logMenuToggleButton:hover {
+    background-color: #E0EAF3;
+    border-color: transparent;
+    color: #006E94;
+}
+
+QToolButton#logLatestButton {
+    color: #006E94;
+    font-weight: bold;
+}
+
+QToolButton#logMenuToggleButton {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+QToolButton#logMenuToggleButton[menuExpanded="true"] {
+    background-color: #E0EAF3;
+    border-color: transparent;
+}
+
+/* =========================================
+   스크롤바
+   ========================================= */
+QScrollBar:vertical {
+    border: none;
+    background-color: transparent;
+    width: 5px;
+    border-radius: 3px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #00AEEF;
+    border: 1px solid #00AEEF;
+    min-height: 20px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #00AEEF;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background-color: transparent;
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    border: none;
+    background-color: transparent;
+    border-radius: 3px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+    image: none;
+    width: 0px;
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background-color: transparent;
+    height: 5px;
+    border-radius: 3px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #00AEEF;
+    border: 1px solid #00AEEF;
+    min-width: 20px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #00AEEF;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;
+    background-color: transparent;
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    border: none;
+    background-color: transparent;
+    border-radius: 3px;
+}
+
+QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+    image: none;
+    width: 0px;
+    height: 0px;
+}
+
+/* 시작 화면 스크롤바는 5px 슬롯 안에서 숨김/축소/확대한다. */
+QScrollBar[contextual="true"]:vertical,
+QScrollBar[contextual="true"]::add-page:vertical,
+QScrollBar[contextual="true"]::sub-page:vertical {
+    background-color: #F8FAFC;
+}
+
+QScrollBar[contextual="true"]::handle:vertical {
+    background-color: transparent;
+    min-height: 20px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    margin-left: 2px;
+    margin-right: 1px;
+}
+
+QScrollBar[contextual="true"][contextualVisible="true"]::handle:vertical {
+    background-color: #00AEEF;
+    border-color: #00AEEF;
+}
+
+QScrollBar[contextual="true"][contextualExpanded="true"]::handle:vertical {
+    margin-left: 0px;
+    margin-right: 1px;
+}

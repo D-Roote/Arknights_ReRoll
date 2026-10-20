@@ -1,0 +1,568 @@
+{
+    "Clear_Start_05": {
+        "focus": "▶ 0-5 클리어 시작",
+        "next": [
+            "Start_05"
+        ]
+    },
+    "05_Skip_Amiya_Dia": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [40, 125, 1, 1]
+            }
+        }
+    },
+    "Start_05": {
+        "next": [
+            "05_Move_Right"
+        ]
+    },
+    "05_Move_Right": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [845, 372, 1, 1],
+                "end": [206, 379, 1, 1],
+                "duration": 300
+            }
+        },
+        "next": [
+            "05_Press_05",
+            "05_Move_Right"
+        ]
+    },
+    "05_Press_05": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/stage/05/05_op_btn.png",
+                                "roi": [579, 319, 104, 36]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [579, 319, 104, 36],
+                                "expected": ".*0-5.*",
+                                "threshold": 0.3
+                            }
+                        }
+                    }
+                ],
+                "box_index": 0
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 3000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "05_Start_05"
+        ]
+    },
+    "05_Start_05": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1150, 650, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "05_Find_Ami"
+        ]
+    },
+    "05_Find_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_ami_dia.png",
+                "roi": [53, 58, 145, 143]
+            }
+        },
+        "next": [
+            "05_Wait_Fe"
+        ]
+    },
+    "05_Wait_Fe": {
+        "next": [
+            "05_Add_Fe",
+            "[JumpBack]05_Skip_Amiya_Dia"
+        ]
+    },
+    "05_Add_Fe": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [948, 17, 120, 47],
+                "expected": ".*빠른편성.*"
+            }
+        },
+        "pre_delay": 1000,
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "05_Add_Fe",
+            "05_Select_Fe"
+        ]
+    },
+    "05_Select_Fe": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_fe_select.png",
+                "roi": [808,63,405,575]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1000,
+        "next": [
+            "05_Check_Fe",
+            "05_Select_Fe"
+        ]
+    },
+    "05_Check_Fe": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [1026,85,56,61],
+                                "expected": ".*8.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [880,363,56,62],
+                                "expected": ".*8.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [1026,363,56,61],
+                                "expected": ".*8.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "next": [
+            "05_Click_Ok"
+        ]
+    },
+    "05_Click_Ok": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1120, 690, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "05_Op_Start"
+        ]
+    },
+    "05_Op_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_op_start.png",
+                "roi": [1041, 375, 119, 232]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "05_2x_01",
+            "05_Op_Start"
+        ]
+    },
+    "05_2x_01": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_1x.png",
+                "roi": [1064, 21, 61, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "05_2x_02",
+            "05_2x_01"
+        ]
+    },
+
+    "05_2x_02": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_1x.png",
+                "roi": [1064, 21, 61, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "05_Deploy_Fe",
+            "05_2x_02"
+        ]
+    },
+    "05_Deploy_Fe": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_fe.png",
+                "roi": [694, 602, 105, 111]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [745, 660, 1, 1],
+                "end": [1067, 221, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "05_DeployR_Fe",
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Fe"
+        ]
+    },
+    "05_DeployR_Fe": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deployr_fe.png",
+                "roi": [831, 56, 74, 57]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1061, 220, 1, 1],
+                "end": [562, 213, 1, 1]
+            }
+        },
+        "next": [
+            "05_DeployR_Fe_Confirm",
+            "05_DeployR_Fe",
+            "05_Deploy_Fe"
+        ]
+    },
+
+    "05_DeployR_Fe_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_fe.png",
+                "roi": [694, 602, 105, 111]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Fe",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "05_DeployR_Fe_Wait"
+        ]
+    },
+
+    "05_DeployR_Fe_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "05_Deploy_Ami"
+        ]
+    },
+    "05_Deploy_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_ami.png",
+                "roi": [1167, 601, 107, 111]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1218, 662, 1, 1],
+                "end": [875, 308, 1, 1],
+                "duration": 600
+            }
+        },
+        "next": [
+            "05_DeployR_Ami",
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Ami"
+        ]
+    },
+    "05_DeployR_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deployr_ami.png",
+                "roi": [649, 147, 65, 60]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [872, 307, 1, 1],
+                "end": [1162, 307, 1, 1]
+            }
+        },
+        "next": [
+            "05_DeployR_Ami_Confirm",
+            "05_DeployR_Ami",
+            "05_Deploy_Ami"
+        ]
+    },
+
+    "05_DeployR_Ami_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_ami.png",
+                "roi": [1167, 601, 107, 111]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Ami",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "05_DeployR_Ami_Wait"
+        ]
+    },
+
+    "05_DeployR_Ami_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "05_Deploy_Hib"
+        ]
+    },
+    "05_Deploy_Hib": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_hib.png",
+                "roi": [1165, 602, 107, 110]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1217, 660, 1, 1],
+                "end": [956, 144, 1, 1],
+                "duration": 600
+            }
+        },
+        "next": [
+            "05_DeployR_Hib",
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Hib"
+        ]
+    },
+    "05_DeployR_Hib": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deployr_hib.png",
+                "roi": [743, 15, 57, 47]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [954, 141, 1, 1],
+                "end": [978, 521, 1, 1]
+            }
+        },
+        "next": [
+            "05_DeployR_Hib_Confirm",
+            "05_DeployR_Hib",
+            "05_Deploy_Hib"
+        ]
+    },
+
+    "05_DeployR_Hib_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_hib.png",
+                "roi": [1165, 602, 107, 110]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Hib",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "05_DeployR_Hib_Wait"
+        ]
+    },
+
+    "05_DeployR_Hib_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "05_Deploy_Jes"
+        ]
+    },
+    "05_Deploy_Jes": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_jes.png",
+                "roi": [1047, 599, 107, 112]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1105, 649, 1, 1],
+                "end": [784, 319, 1, 1],
+                "duration": 600
+            }
+        },
+        "next": [
+            "05_DeployR_Jes",
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Jes"
+        ]
+    },
+    "05_DeployR_Jes": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deployr_jes.png",
+                "roi": [564, 155, 61, 61]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [785, 319, 1, 1],
+                "end": [1042, 315, 1, 1]
+            }
+        },
+        "next": [
+            "05_DeployR_Jes_Confirm",
+            "05_DeployR_Jes",
+            "05_Deploy_Jes"
+        ]
+    },
+
+    "05_DeployR_Jes_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/05/05_deploy_jes.png",
+                "roi": [1047, 599, 107, 112]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "05_Deploy_Jes",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "05_DeployR_Jes_Wait"
+        ]
+    },
+
+    "05_DeployR_Jes_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "05_Wait_Recruit"
+        ]
+    },
+    "05_Wait_Recruit": {
+        "next": [
+            "05_Op_End",
+            "[JumpBack]05_Skip_Amiya_Dia"
+        ]
+    },
+    "05_Op_End": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_end.png",
+                "roi": [72, 294, 58, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "05_Wait_End"
+        ]
+    },
+    "05_Wait_End": {
+        "next": [
+            "05_Check_End",
+            "[JumpBack]05_Skip_Amiya_Dia"
+        ]
+    },
+    "05_Check_End": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": ["Map_Template_1", "Map_Template_2"]
+            }
+        },
+        "next": [
+            "Clear_Start_06"
+        ]
+    }
+}

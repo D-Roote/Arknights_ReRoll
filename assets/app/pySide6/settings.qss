@@ -1,0 +1,208 @@
+/* 설정 탭 전용 스타일 */
+QWidget#settingsPanel,
+QWidget#settingsDetailContents {
+    background-color: transparent;
+}
+
+QListWidget#settingsNavigation,
+QListWidget#extraNavigation {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+}
+
+QListWidget#settingsNavigation::item,
+QListWidget#extraNavigation::item {
+    background-color: transparent;
+    color: #475569;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 12px;
+    margin-bottom: 4px;
+}
+
+QListWidget#settingsNavigation::item:hover,
+QListWidget#extraNavigation::item:hover {
+    background-color: #EDF4FA;
+}
+
+QListWidget#settingsNavigation::item:selected,
+QListWidget#extraNavigation::item:selected {
+    background-color: #DDEFF8;
+    color: #0284C7;
+    font-weight: bold;
+}
+
+QScrollArea#settingsDetailScroll,
+QScrollArea#extraFeatureScroll {
+    background-color: transparent;
+    border: none;
+}
+
+QFrame#settingsSection,
+QFrame#multiToolbar,
+QFrame#multiInstanceCard,
+QFrame#extraFeatureCard {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+}
+
+QFrame#multiInstanceCard QPushButton#monitorActionButton {
+    padding: 4px 9px;
+    min-height: 18px;
+}
+
+QFrame#multiInstanceCard QComboBox#monitorComboBox,
+QFrame#multiInstanceCard QLineEdit#monitorLineEdit {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    min-height: 18px;
+}
+
+QFrame#multiInstanceCard QPushButton#monitorActionButton:checked {
+    background-color: #E0EAF3;
+    border-color: #00AEEF;
+    color: #006E94;
+}
+
+QToolButton#extraNavigationToggle {
+    background-color: #E2E8F0;
+    color: #64748B;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0px;
+}
+
+QToolButton#extraNavigationToggle:hover {
+    background-color: #DDEFF8;
+    color: #0284C7;
+}
+
+QToolButton#extraNavigationToggle:focus {
+    border-color: #0284C7;
+}
+
+QLabel#settingsSectionTitle {
+    background-color: transparent;
+    color: #1E293B;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+QLabel#settingsSectionDescription,
+QLabel#settingsRowDescription {
+    background-color: transparent;
+    color: #64748B;
+    font-size: 9pt;
+}
+
+QLabel#settingsRowTitle {
+    background-color: transparent;
+    color: #334155;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+QFrame#settingsRow {
+    background-color: transparent;
+    border: none;
+    border-top: 1px solid #EEF2F7;
+}
+
+QLabel#controllerDetails {
+    background-color: #F8FAFC;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+QCheckBox#settingsCheckbox {
+    spacing: 0px;
+}
+
+QLabel#programPathStatus {
+    background-color: #F8FAFC;
+    color: #475569;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 9px 10px;
+}
+
+QLabel#programPathStatus[pathValid="true"] {
+    border-color: #7DD3A7;
+    color: #166534;
+}
+
+QLabel#programPathStatus[pathValid="false"] {
+    border-color: #F3B7BD;
+    color: #B42331;
+}
+
+QWidget#programPathControls,
+QWidget#programActiveStatusContainer {
+    background-color: transparent;
+}
+
+QLineEdit#programPathInput {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    padding: 7px 9px;
+    min-height: 20px;
+}
+
+QLineEdit#programPathInput:hover,
+QLineEdit#programPathInput:focus {
+    border-color: #00AEEF;
+}
+
+QPushButton#programBrowseButton,
+QPushButton#programApplyButton {
+    border: 1px solid transparent;
+    min-height: 20px;
+    padding: 7px 12px;
+}
+
+QPushButton#programApplyButton {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+QComboBox#settingsComboBox {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    border-radius: 6px;
+    padding: 7px 10px;
+    min-height: 20px;
+}
+
+QComboBox#settingsComboBox:hover,
+QComboBox#settingsComboBox:focus {
+    border-color: #00AEEF;
+}
+
+QComboBox#settingsComboBox:disabled {
+    background-color: #E2E8F0;
+    color: #94A3B8;
+}
+
+QComboBox#settingsComboBox::drop-down {
+    border: none;
+    width: 28px;
+}
+
+QComboBox#settingsComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    color: #334155;
+    border: 1px solid #CBD5E0;
+    selection-background-color: #00AEEF;
+    selection-color: #FFFFFF;
+    outline: none;
+}

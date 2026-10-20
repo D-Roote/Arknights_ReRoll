@@ -1,0 +1,255 @@
+{
+    "Clear_Start_01": {"focus": "▶ 0-1 클리어 시작", "next": "Start_01"},
+    "Start_01": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/start-01.png",
+                "roi": [850, 72, 138, 89]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1234, 634, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "OP_01_Start",
+            "Start_01"
+        ]
+    },
+    "OP_01_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/op_start.png",
+                "roi": [1038, 367, 131, 276]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "01_Dobe_01",
+            "OP_01_Start"
+        ]
+    },
+    "01_Dobe_01": {
+        "pre_delay": 1000,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_dobe.png",
+                "roi": [51, 47, 148, 153]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "01_2x_01"
+        ]
+    },
+    "01_2x_01": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1100, 55, 1, 1]
+            }
+        },
+        "next": "01_Deploy_Yato"
+    },
+    "01_Deploy_Yato": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_yato_dep1.png",
+                "roi": [928, 602, 108, 109]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [992, 652, 1, 1],
+                "end": [562, 296, 1, 1]
+            }
+        },
+        "next": [
+            "01_DeployR_Yato",
+            "[JumpBack]Public_Deploy_Cancel",
+            "01_Deploy_Yato"
+        ]
+    },
+    "01_DeployR_Yato": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_yato_dep2.png",
+                "roi": [432, 130, 95, 80]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [682, 335, 1, 1],
+                "end": [1152, 334, 1, 1]
+            }
+        },
+        "next": [
+            "01_DeployR_Yato_Confirm",
+            "01_DeployR_Yato",
+            "01_Deploy_Yato"
+        ]
+    },
+
+    "01_DeployR_Yato_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_yato_dep1.png",
+                "roi": [928, 602, 108, 109]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "01_Deploy_Yato",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "01_DeployR_Yato_Wait"
+        ]
+    },
+
+    "01_DeployR_Yato_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "01_Deploy_Amiya"
+        ]
+    },
+    "01_Deploy_Amiya": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dep1.png",
+                "roi": [1167, 601, 109, 109]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1218, 658, 1, 1],
+                "end": [671, 378, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "01_DeployR_Amiya",
+            "[JumpBack]Public_Deploy_Cancel",
+            "01_Deploy_Amiya"
+        ]
+    },
+    "01_DeployR_Amiya": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dep2.png",
+                "roi": [499, 171, 119, 104]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [682, 335, 1, 1],
+                "end": [1152, 334, 1, 1]
+            }
+        },
+        "next": [
+            "01_DeployR_Amiya_Confirm",
+            "01_DeployR_Amiya",
+            "01_Deploy_Amiya"
+        ]
+    },
+
+    "01_DeployR_Amiya_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dep1.png",
+                "roi": [1167, 601, 109, 109]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "01_Deploy_Amiya",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "01_DeployR_Amiya_Wait"
+        ]
+    },
+
+    "01_DeployR_Amiya_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "01_Op_End"
+        ]
+    },
+
+    "01_Op_End": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_end.png",
+                "roi": [72, 294, 58, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "01_Wait_End"
+        ]
+    },
+    "01_Wait_End": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [300, 250, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "01_Wait_Ami",
+            "01_Wait_End"
+        ]
+    },
+    "01_Wait_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dia.png",
+                "roi": [58, 55, 139, 147]
+            }
+        },
+        "next": [
+            "01_End_Tutorial"
+        ]
+    }
+}

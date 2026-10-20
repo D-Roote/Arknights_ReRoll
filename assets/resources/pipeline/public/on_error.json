@@ -1,0 +1,174 @@
+{
+    "OnError_Start_Main": {
+        "focus": "▶ 진행상황 초기화",
+        "next": [
+            "OnError_Start"
+        ]
+    },
+    "OnError_Start": {
+        "focus": "▶ 게임 종료",
+        "action": {
+            "type": "StopApp",
+            "param": {
+                "package": "com.YoStarKR.Arknights"
+            }
+        },
+        "next": [
+            "OnError_SharedPrefs_Delete"
+        ],
+        "on_error": []
+    },
+    "OnError_SharedPrefs_Delete": {
+        "focus": "▶ 게임 shared_prefs 초기화",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "DeleteArknightsSharedPrefs"
+            }
+        },
+        "next": [
+            "OnError_AdvertisingId_Reset"
+        ],
+        "on_error": []
+    },
+    "OnError_AdvertisingId_Reset": {
+        "focus": "▶ Google 광고 ID 초기화",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "ResetAdvertisingId"
+            }
+        },
+        "next": [
+            "OnError_App_Restart"
+        ],
+        "on_error": []
+    },
+    "OnError_App_Restart": {
+        "focus": "▶ 게임 재실행",
+        "action": {
+            "type": "StartApp",
+            "param": {
+                "package": "com.YoStarKR.Arknights"
+            }
+        },
+        "next": [
+            "OnError_ReDownload_Check"
+        ]
+    },
+    "OnError_ReDownload_Check": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/saved_reset/sr_download_nclick.png",
+                "roi": [410, 265, 35, 123]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [432, 374, 1, 1]
+            }
+        },
+        "next": [
+            "OnError_ReDownload_Next",
+            "OnError_ReDownload_Check"
+        ]
+    },
+    "OnError_ReDownload_Next": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/saved_reset/sr_download_clicked.png",
+                "roi": [410, 265, 35, 123]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [766, 442, 1, 1]
+            }
+        },
+        "next": [
+            "OnError_DownloadVoice_False",
+            "OnError_No_DownloadVoice",
+            "OnError_ReDownload_Check",
+            "OnError_ReDownload_Next"
+        ]
+    },
+    "OnError_DownloadVoice_False": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/saved_reset/sr_download_check.png",
+                "roi": [379, 37, 69, 482]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "OnError_No_DownloadVoice",
+            "OnError_DownloadVoice_False"
+        ]
+    },
+    "OnError_No_DownloadVoice": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/saved_reset/sr_download_check.png",
+                "roi": [379, 37, 69, 482]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [632, 596, 1, 1]
+            }
+        },
+        "inverse": true,
+        "next": [
+            "[JumpBack]Login_Check_Before_Window",
+            "OnError_Login_Check"
+        ]
+    },
+    "OnError_Login_Check": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "account/login/1_announcement.png",
+                                "roi": [325, 486, 627, 123]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "account/login/2_already_login.png",
+                                "roi": [1156, 287, 124, 238]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "account/login/4_login.png",
+                                "roi": [509, 438, 260, 142]
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "next": [
+            "Start_Login"
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "Public_Deploy_Cancel": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "shared/pub_deploy_cancel.png",
+                "roi": [10, 10, 1260, 700],
+                "threshold": 0.7
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    }
+}

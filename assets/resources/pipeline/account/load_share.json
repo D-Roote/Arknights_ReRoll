@@ -1,0 +1,67 @@
+{
+    "Load_Shared_Pref_Main": {
+        "focus": "▶ 해당 계정 불러오기",
+        "next": [
+            "Load_App_Stop"
+        ]
+    },
+    "Load_App_Stop": {
+        "focus": "▶ 게임 종료",
+        "action": {
+            "type": "StopApp",
+            "param": {
+                "package": "com.YoStarKR.Arknights"
+            }
+        },
+        "next": [
+            "Load_Shared_Pref_Dir"
+        ],
+        "on_error": []
+    },
+    "Load_Shared_Pref_Dir": {
+        "focus": "▶ 저장된 계정 shared_prefs 불러오기",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "ImportArknightsSharedPrefs",
+                "custom_action_param": {
+                    "source_dir": ""
+                }
+            }
+        },
+        "next": [
+            "Load_AdvertisingId_Reset"
+        ],
+        "on_error": []
+    },
+    "Load_AdvertisingId_Reset": {
+        "focus": "▶ Google 광고 ID 초기화",
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "ResetAdvertisingId"
+            }
+        },
+        "next": [
+            "Load_App_Restart"
+        ],
+        "on_error": []
+    },
+    "Load_App_Restart": {
+        "focus": "▶ 게임 재실행",
+        "action": {
+            "type": "StartApp",
+            "param": {
+                "package": "com.YoStarKR.Arknights"
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Load_Wait_Download"
+        ]
+    },
+    "Load_Wait_Download": {
+        "focus":"▶ 불러오기 완료",
+        "next": []
+    }
+}

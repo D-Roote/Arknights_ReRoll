@@ -1,0 +1,20 @@
+{
+    "Map_Template_1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1030,627,110,29],
+                "expected": ".*현재.*진행도.*"
+            }
+        }
+    },
+    "Map_Template_2": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [1125,641,106,32],
+                "expected": ".*작전개시.*"
+            }
+        }
+    }
+}

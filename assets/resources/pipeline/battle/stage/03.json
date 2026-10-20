@@ -1,0 +1,436 @@
+{
+    "Clear_Start_03": {"focus": "▶ 0-3 클리어 시작", "next": "Start_03"},
+    "03_Skip_Amiya_Dia": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [40, 125, 1, 1]
+            }
+        }
+    },
+    "Start_03": {"next": "03_Move_Right"},
+    "03_Move_Right": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [845, 372, 1, 1],
+                "end": [206, 379, 1, 1],
+                "duration": 300
+            }
+        },
+        "next": [
+            "03_Press_03",
+            "03_Move_Right"
+        ]
+    },
+    "03_Press_03": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/stage/03/03_op_btn.png",
+                                "roi": [574, 304, 128, 40]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [574, 304, 128, 40],
+                                "expected": ".*0-3.*",
+                                "threshold": 0.3
+                            }
+                        }
+                    }
+                ],
+                "box_index": 0
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 3000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "03_Start_03"
+        ]
+    },
+    "03_Start_03": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1150, 650, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "03_Op_Start"
+        ]
+    },
+    "03_Op_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_op_start.png",
+                "roi": [1041, 375, 124, 240]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "03_2x_01",
+            "03_Op_Start"
+        ]
+    },
+
+    "03_2x_01": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    "03_Deploy_Nko"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1100, 50, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "03_Deploy_Nko"
+        ]
+    },
+    "03_Deploy_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_nko.png",
+                "roi": [930, 602, 110, 109]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [995, 666, 1, 1],
+                "end": [790, 376, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "03_DeployR_Nko",
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Nko"
+        ]
+    },
+    "03_DeployR_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deployr_nko.png",
+                "roi": [558, 184, 88, 74]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [673, 376, 1, 1],
+                "end": [180, 372, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Nko_Confirm",
+            "03_DeployR_Nko",
+            "03_Deploy_Nko"
+        ]
+    },
+
+    "03_DeployR_Nko_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_nko.png",
+                "roi": [930, 602, 110, 109]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Nko",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "03_DeployR_Nko_Wait"
+        ]
+    },
+
+    "03_DeployR_Nko_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "03_Deploy_Yato"
+        ]
+    },
+    "03_Deploy_Yato": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_yato.png",
+                "roi": [930, 604, 108, 110]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [979, 637, 1, 1],
+                "end": [697, 386, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Yato",
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Yato"
+        ]
+    },
+    "03_DeployR_Yato": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deployr_yato.png",
+                "roi": [470, 197, 78, 74]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [654, 381, 1, 1],
+                "end": [164, 377, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Yato_Confirm",
+            "03_DeployR_Yato",
+            "03_Deploy_Yato"
+        ]
+    },
+
+    "03_DeployR_Yato_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_yato.png",
+                "roi": [930, 604, 108, 110]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Yato",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "03_DeployR_Yato_Wait"
+        ]
+    },
+
+    "03_DeployR_Yato_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "03_Deploy_Ami"
+        ]
+    },
+    "03_Deploy_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_ami.png",
+                "roi": [1166, 605, 107, 106]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1216, 655, 1, 1],
+                "end": [694, 293, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Ami",
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Ami"
+        ]
+    },
+    "03_DeployR_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deployr_ami.png",
+                "roi": [481, 134, 66, 59]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [669, 315, 1, 1],
+                "end": [331, 315, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Ami_Confirm",
+            "03_DeployR_Ami",
+            "03_Deploy_Ami"
+        ]
+    },
+
+    "03_DeployR_Ami_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_ami.png",
+                "roi": [1166, 605, 107, 106]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Ami",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "03_DeployR_Ami_Wait"
+        ]
+    },
+
+    "03_DeployR_Ami_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "03_Deploy_Hib"
+        ]
+    },
+    "03_Deploy_Hib": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_hib.png",
+                "roi": [1166, 602, 110, 111]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1207, 651, 1, 1],
+                "end": [895, 361, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Hib",
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Hib"
+        ]
+    },
+    "03_DeployR_Hib": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deployr_hib.png",
+                "roi": [700, 176, 37, 70]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [880, 360, 1, 1],
+                "end": [491, 351, 1, 1]
+            }
+        },
+        "next": [
+            "03_DeployR_Hib_Confirm",
+            "03_DeployR_Hib",
+            "03_Deploy_Hib"
+        ]
+    },
+
+    "03_DeployR_Hib_Confirm": {
+
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/03/03_deploy_hib.png",
+                "roi": [1166, 602, 110, 111]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "03_Deploy_Hib",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "03_DeployR_Hib_Wait"
+        ]
+    },
+
+    "03_DeployR_Hib_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "03_Op_End"
+        ]
+    },
+    "03_Op_End": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_end.png",
+                "roi": [72, 294, 58, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "03_Wait_End"
+        ]
+    },
+    "03_Wait_End": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [300, 250, 1, 1]
+            }
+        },
+        "next": [
+            "03_Wait_Main",
+            "03_Wait_End"
+        ]
+    },
+    "03_Wait_Main": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": ["Map_Template_1", "Map_Template_2"]
+            }
+        },
+        "next": [
+            "Clear_Start_TR3"
+        ]
+    }
+}

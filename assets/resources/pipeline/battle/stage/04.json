@@ -1,0 +1,654 @@
+{
+    "Clear_Start_04": {
+        "focus": "▶ 0-4 클리어 시작",
+        "next": [
+            "Start_04"
+        ]
+    },
+    "04_Skip_Amiya_Dia": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [40, 125, 1, 1]
+            }
+        }
+    },
+    "Start_04": {
+        "next": [
+            "04_Move_Right"
+        ]
+    },
+    "04_Move_Right": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [845, 372, 1, 1],
+                "end": [206, 379, 1, 1],
+                "duration": 300
+            }
+        },
+        "next": [
+            "04_Press_04",
+            "04_Move_Right"
+        ]
+    },
+    "04_Press_04": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/stage/04/04_op_btn.png",
+                                "roi": [575, 208, 123, 40]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [575, 208, 123, 40],
+                                "expected": ".*0-4.*",
+                                "threshold": 0.3
+                            }
+                        }
+                    }
+                ],
+                "box_index": 0
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 3000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "04_Start_04"
+        ]
+    },
+    "04_Start_04": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1150, 650, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "04_Find_Ami"
+        ]
+    },
+    "04_Find_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_ami_dia.png",
+                "roi": [53, 58, 145, 143]
+            }
+        },
+        "next": [
+            "04_Wait_Jes"
+        ]
+    },
+    "04_Wait_Jes": {
+        "next": [
+            "04_Add_Jes",
+            "[JumpBack]04_Skip_Amiya_Dia"
+        ]
+    },
+    "04_Add_Jes": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [948, 17, 120, 47],
+                "expected": ".*빠른편성.*"
+            }
+        },
+        "pre_delay": 1000,
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "04_Add_Jes",
+            "04_Select_Jes"
+        ]
+    },
+    "04_Select_Jes": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [817,313,125,31],
+                                "expected": ".*제시카.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [808,589,134,42],
+                                "expected": ".*제시카.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [669,593,128,34],
+                                "expected": ".*제시카.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1000,
+        "next": [
+            "04_Check_Jes",
+            "04_Select_Jes"
+        ]
+    },
+    "04_Check_Jes": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [878,83,60,65],
+                                "expected": ".*6.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [734,359,60,65],
+                                "expected": ".*6.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [878,359,60,65],
+                                "expected": ".*6.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "04_Select_Ad"
+        ]
+    },
+    "04_Select_Ad": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [817,313,125,31],
+                                "expected": ".*아드나키엘.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [808,589,134,42],
+                                "expected": ".*아드나키엘.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [669,593,128,34],
+                                "expected": ".*아드나키엘.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1000,
+        "next": [
+            "04_Check_Ad",
+            "04_Select_Ad"
+        ]
+    },
+    "04_Check_Ad": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [878,83,60,65],
+                                "expected": ".*7.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [734,359,60,65],
+                                "expected": ".*7.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [878,359,60,65],
+                                "expected": ".*7.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "next": [
+            "04_Click_Ok"
+        ]
+    },
+    "04_Click_Ok": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1120, 690, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "04_Op_Start"
+        ]
+    },
+    "04_Op_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_op_start.png",
+                "roi": [1041, 375, 119, 232]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "04_2x_01",
+            "04_Op_Start"
+        ]
+    },
+
+    "04_2x_01": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_1x.png",
+                "roi": [1065, 23, 62, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "04_Deploy_Jes",
+            "04_2x_01"
+        ]
+    },
+    "04_Deploy_Jes": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_jes.png",
+                "roi": [809, 600, 106, 112]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [864, 649, 1, 1],
+                "end": [770, 179, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "04_DeployR_Jes",
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Jes"
+        ]
+    },
+    "04_DeployR_Jes": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deployr_jes.png",
+                "roi": [572, 30, 64, 50]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [756, 211, 1, 1],
+                "end": [367, 229, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Jes_Confirm",
+            "04_DeployR_Jes",
+            "04_Deploy_Jes"
+        ]
+    },
+    "04_DeployR_Jes_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_jes.png",
+                "roi": [809, 600, 106, 112]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Jes",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "04_DeployR_Jes_Wait"
+        ]
+    },
+    "04_DeployR_Jes_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "04_Deploy_Nko"
+        ]
+    },
+    "04_Deploy_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_nko.png",
+                "roi": [927, 601, 112, 114]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [996, 644, 1, 1],
+                "end": [855, 247, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Nko",
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Nko"
+        ]
+    },
+    "04_DeployR_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deployr_nko.png",
+                "roi": [659, 78, 68, 63]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [855, 247, 1, 1],
+                "end": [411, 262, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Nko_Confirm",
+            "04_DeployR_Nko",
+            "04_Deploy_Nko"
+        ]
+    },
+    "04_DeployR_Nko_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_nko.png",
+                "roi": [927, 601, 112, 114]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Nko",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "04_DeployR_Nko_Wait"
+        ]
+    },
+    "04_DeployR_Nko_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "04_Deploy_Ami"
+        ]
+    },
+    "04_Deploy_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_ami.png",
+                "roi": [1169, 603, 107, 108]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1217, 646, 1, 1],
+                "end": [662, 321, 1, 1],
+                "duration": 600
+            }
+        },
+        "next": [
+            "04_DeployR_Ami",
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Ami"
+        ]
+    },
+    "04_DeployR_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deployr_ami.png",
+                "roi": [483, 165, 56, 57]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [654, 356, 1, 1],
+                "end": [655, 98, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Ami_Confirm",
+            "04_DeployR_Ami",
+            "04_Deploy_Ami"
+        ]
+    },
+    "04_DeployR_Ami_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_ami.png",
+                "roi": [1169, 603, 107, 108]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Ami",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "04_DeployR_Ami_Wait"
+        ]
+    },
+    "04_DeployR_Ami_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "04_Deploy_Ad"
+        ]
+    },
+    "04_Deploy_Ad": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_ad.png",
+                "roi": [1048, 602, 104, 112]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1099, 654, 1, 1],
+                "end": [685, 418, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Ad",
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Ad"
+        ]
+    },
+    "04_DeployR_Ad": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deployr_ad.png",
+                "roi": [466, 235, 76, 69]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [598, 439, 1, 1],
+                "end": [228, 430, 1, 1]
+            }
+        },
+        "next": [
+            "04_DeployR_Ad_Confirm",
+            "04_DeployR_Ad",
+            "04_Deploy_Ad"
+        ]
+    },
+    "04_DeployR_Ad_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/04/04_deploy_ad.png",
+                "roi": [1048, 602, 104, 112]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "04_Deploy_Ad",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "04_DeployR_Ad_Wait"
+        ]
+    },
+    "04_DeployR_Ad_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "04_Op_End"
+        ]
+    },
+    "04_Op_End": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_end.png",
+                "roi": [72, 294, 58, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "04_Wait_End"
+        ]
+    },
+    "04_Wait_End": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [300, 250, 1, 1]
+            }
+        },
+        "next": [
+            "04_Wait_Ami",
+            "04_Wait_End"
+        ]
+    },
+    "04_Wait_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dia.png",
+                "roi": [58, 55, 139, 147]
+            }
+        },
+        "next": [
+            "04_End_Tutorial"
+        ]
+    }
+}

@@ -1,0 +1,152 @@
+{
+    "10_End_Tutorial": {
+        "focus": "▶ 추가 튜토리얼 시작",
+        "next": "10_Re_Tutorial"
+    },
+    "10_Re_Tutorial": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/10/10_prts_dia.png",
+                "roi": [53, 59, 142, 134]
+            }
+        },
+        "next": [
+            "10_Re"
+        ]
+    },
+    "10_Re": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [950, 200, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "10_Find_Amiya",
+            "10_Re_00",
+            "10_Re"
+        ]
+    },
+    "10_Find_Amiya": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/amiya_dialogue.png",
+                "roi": [60, 64, 136, 136]
+            }
+        },
+        "next": [
+            "10_Re_00"
+        ]
+    },
+    "10_Re_00": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [650, 500, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "10_Re_01",
+            "10_Re_00"
+        ]
+    },
+    "10_Re_01": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/tutorial/10/10_re_map.png",
+                                "roi": [509, 645, 47, 51]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/tutorial/10/10_re_map_2.png",
+                                "roi": [508, 649, 42, 36]
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [530, 670, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "10_Re_02",
+            "10_Re_01"
+        ]
+    },
+    "10_Re_02": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/10/10_re_main.png",
+                "roi": [791, 38, 74, 13]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [270, 40, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "10_Back_Story",
+            "10_Re_02"
+        ]
+    },
+    "10_Back_Story": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [499, 89, 62, 38],
+                "expected": ".*작전.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 5000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "10_Mission",
+            "10_Back_Story"
+        ]
+    },
+    "10_Mission": {
+        "pre_delay": 500,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/tutorial/10/10_mission.png",
+                "roi": [967, 560, 289, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Clear_Start_11"
+        ]
+    }
+}

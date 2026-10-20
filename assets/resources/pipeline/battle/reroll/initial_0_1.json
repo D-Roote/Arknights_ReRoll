@@ -1,0 +1,145 @@
+{
+    /* 0-1 스토리 시작부터 0-1 퇴각런까지 */
+    /* TODO: 0-1 진짜 깨고 TR1 런? */
+    "Start_0-1": {
+        "focus": "▶ 0-1 시작",
+        "next": [
+            "0-1_Story1_1",
+            "0-1_Battle"
+        ]
+    },
+    "0-1_Story1_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_1/1_story1.png",
+                "roi": [1098, 0, 174, 119]
+                // "origin roi" : [1148,43,74,19]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "0-1_Story1_2"
+        ]
+    },
+    "0-1_Story1_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [795, 461, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "0-1_Battle"
+        ]
+    },
+    "0-1_Battle": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/restart/0_1/2_battle.png",
+                "roi": [0, 0, 859, 269]
+                // "origin roi" : [50,36,759,169]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "0-1_Retreat_Click_Pause",
+            "0-1_Battle"
+        ]
+    },
+    "0-1_Retreat_Click_Pause": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/retreat/pause_0-1.png",
+                "roi": [0, 0, 171, 175]
+                // "origin roi" : [47,16,71,75]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "0-1_Retreat_Give_Up",
+            "0-1_Retreat_Click_Pause"
+        ]
+    },
+    "0-1_Retreat_Give_Up": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/retreat/give_up.png",
+                "roi": [592, 491, 688, 170]
+                // "origin roi" : [642,541,635,70]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "0-1_Retreat_Wait_Until_Exit"
+        ]
+    },
+    "0-1_Retreat_Wait_Until_Exit": {
+        "next": [
+            "0-1_Retreat_Go_Home_1",
+            "[JumpBack]0-1_Retreat_Tap_Until_Exit"
+        ]
+    },
+    "0-1_Retreat_Tap_Until_Exit": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [518, 183, 1, 1]
+            }
+        }
+    },
+    "0-1_Retreat_Go_Home_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/retreat/home_1.png",
+                "roi": [117, 0, 305, 148]
+                // "origin roi" : [167,13,205,48]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "0-1_Retreat_Go_Home_2",
+            "0-1_Retreat_Go_Home_1"
+        ]
+    },
+    "0-1_Retreat_Go_Home_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/shared/retreat/home_2.png",
+                "roi": [15, 102, 153, 251]
+                // "origin roi" : [65,152,53,151]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Start_Home_Popup"
+        ]
+    }
+}

@@ -1,0 +1,320 @@
+{
+    "Start_Login": {
+        "focus": "▶ 로그인 시작",
+        "next": [
+            "[JumpBack]Login_Check_Before_Window",
+            "Login_Check_Announcement",
+            "Login_Check_Already_Login",
+            "Login_Login"
+        ]
+    },
+    "Login_Check_Announcement": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/1_announcement.png",
+                "roi": [325, 486, 627, 123]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Check_Already_Login",
+            "Login_Login",
+            "Login_Check_Announcement"
+        ]
+    },
+    "Login_Check_Already_Login": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/2_already_login.png",
+                "roi": [1156, 287, 124, 238]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1234, 444, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Change_Account",
+            "Login_Check_Already_Login"
+        ]
+    },
+    "Login_Change_Account": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/3_change_account.png",
+                "roi": [641, 343, 214, 134]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Change_Account",
+            "Start_Login"
+        ]
+    },
+    "Login_Login": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/4_login.png",
+                "roi": [509, 438, 260, 142]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [642,486,125,81]
+            }
+        },
+        "post_delay": 5000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Login_Find_Account",
+            "Login_Check_Previous_Account",
+            "Login_Create_Guest_Account_1",
+            "Login_Login"
+        ]
+    },
+    "Login_Check_Previous_Account": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/5_previous_account.png",
+                "roi": [803, 89, 214, 631]
+
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "Login_Remove_Previous_Account_1"
+        ]
+    },
+    "Login_Remove_Previous_Account_1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [871, 317, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Remove_Previous_Account_2"
+        ]
+    },
+    "Login_Remove_Previous_Account_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [871, 418, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Remove_Previous_Account_3"
+        ]
+    },
+    "Login_Remove_Previous_Account_3": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/6_remove_previous_account_3.png",
+                "roi": [628, 365, 227, 137]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Create_Guest_Account_1",
+            "Login_Remove_Previous_Account_3"
+        ]
+    },
+    "Login_Create_Guest_Account_1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [598, 468, 87, 31],
+                "expected": ".*계정.*관리.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [897, 549, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Create_Guest_Account_2"
+        ]
+    },
+    "Login_Create_Guest_Account_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [581, 208, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Check_Email_Consent"
+        ]
+    },
+    "Login_Check_Email_Consent": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/8_email_consent.png",
+                "roi": [306, 31, 687, 287]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [919, 101, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Check_Google_Consent",
+            "Login_Term_Consent_1",
+            "Login_Check_Email_Consent"
+        ],
+        "on_error": "Start_Prologue"
+    },
+    "Login_Check_Google_Consent": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/9_google_consent.png",
+                "roi": [335, 82, 611, 561]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [633, 558, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Login_Term_Consent_1",
+            "Login_Check_Google_Consent"
+        ],
+        "on_error": "Start_Prologue"
+    },
+    "Login_Term_Consent_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "account/login/10_term_consent.png",
+                "roi": [251, 216, 425, 180]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [284, 238, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "Login_Term_Consent_2"
+        ]
+    },
+    "Login_Term_Consent_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [283, 294, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": "Login_Term_Consent_3"
+    },
+    "Login_Term_Consent_3": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [284, 348, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": "Login_Term_Consent_4"
+    },
+    "Login_Term_Consent_4": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [743, 608, 1, 1]
+            }
+        },
+        "post_delay": 1500,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Start_Prologue"
+        ]
+    },
+    "Login_Find_Account": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [564, 22, 152, 49],
+                "expected": ".*계정.*찾기.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1232, 44, 1, 1]
+            }
+        }
+    },
+
+    "Login_Check_Before_Window": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [16, 31, 134, 35],
+                "expected": ".*데이터.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640, 360, 1, 1]
+            }
+        }
+    }
+}

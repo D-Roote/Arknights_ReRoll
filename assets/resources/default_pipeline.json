@@ -1,0 +1,48 @@
+{
+    "Default": {
+        "rate_limit": 500,
+        "timeout": 180000,
+        "pre_delay": 100,
+        "post_delay": 800,
+        "repeat_delay": 50,
+        "on_error": [
+            "OnError_Start_Main"
+        ]
+    },
+    "TemplateMatch": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "threshold": 0.85,
+                "method": 5
+            }
+        }
+    },
+    "OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "only_rec": true,
+                "model": "ko",
+                "threshold": 0.6
+            }
+        }
+    },
+    "Click": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        }
+    },
+    "Swipe": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "duration": 30,
+                "end_hold": 200
+            }
+        }
+    }
+}

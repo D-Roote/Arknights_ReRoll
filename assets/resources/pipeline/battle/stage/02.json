@@ -1,0 +1,411 @@
+{
+    "Clear_Start_02": {
+        "focus": "▶ 0-2 클리어 시작",
+        "next": [
+            "Start_02"
+        ]
+    },
+    "02_Skip_Amiya_Dia": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [40, 125, 1, 1]
+            }
+        }
+    },
+    "Start_02": {
+        "next": [
+            "02_Move_Right"
+        ]
+    },
+    "02_Move_Right": {
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [845, 372, 1, 1],
+                "end": [206, 379, 1, 1],
+                "duration": 300
+            }
+        },
+        "next": [
+            "02_Press_02",
+            "02_Move_Right"
+        ]
+    },
+    "02_Press_02": {
+        "recognition": {
+            "type": "And",
+            "param": {
+                "all_of": [
+                    {
+                        "recognition": {
+                            "type": "TemplateMatch",
+                            "param": {
+                                "template": "battle/stage/02/02_op_btn.png",
+                                "roi": [577, 409, 121, 35]
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi": [577, 409, 121, 35],
+                                "expected": ".*0-2.*",
+                                "threshold": 0.3
+                            }
+                        }
+                    }
+                ],
+                "box_index": 0
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 3000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "02_Start_02"
+        ]
+    },
+    "02_Start_02": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1150, 650, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "02_Find_Ami"
+        ]
+    },
+    "02_Find_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_ami_dia.png",
+                "roi": [53, 58, 145, 143]
+            }
+        },
+        "next": [
+            "02_Wait_hib"
+        ]
+    },
+    "02_Wait_hib": {
+        "next": [
+            "02_Add_Hib",
+            "[JumpBack]02_Skip_Amiya_Dia"
+        ]
+    },
+    "02_Add_Hib": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [948, 17, 120, 47],
+                "expected": ".*빠른편성.*"
+            }
+        },
+        "pre_delay": 1000,
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "02_Select_Hib",
+            "02_Add_Hib"
+        ]
+    },
+    "02_Select_Hib": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [673, 306, 128, 40],
+                                "expected": ".*히비스커스.*"
+                            }
+                        }
+                    },
+                    {
+                        "recognition": {
+                            "type": "OCR",
+                            "param": {
+                                "roi" : [673, 590, 128, 34],
+                                "expected": ".*히비스커스.*"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "post_delay": 1000,
+        "next": [
+            "02_Check_Hib",
+            "02_Select_Hib"
+        ]
+    },
+    "02_Check_Hib": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_hib_selected.png",
+                "roi": [660, 78, 151, 548]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1100, 680, 1, 1]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_Op_Start",
+            "02_Check_Hib"
+        ]
+    },
+    "02_Op_Start": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_op_start.png",
+                "roi": [1041, 375, 119, 232]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_2x_01",
+            "02_Op_Start"
+        ]
+    },
+
+    "02_2x_01": {
+        "recognition": {
+            "type": "Or",
+            "param": {
+                "any_of": [
+                    "02_Deploy_Nko"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1100, 50, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_Deploy_Nko"
+        ]
+    },
+    "02_Deploy_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deploy_nko.png",
+                "roi": [931, 604, 107, 107]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [996, 662, 1, 1],
+                "end": [810, 386, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_DeployR_Nko",
+            "[JumpBack]Public_Deploy_Cancel",
+            "02_Deploy_Nko"
+        ]
+    },
+    "02_DeployR_Nko": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deployr_nko.png",
+                "roi": [552, 187, 101, 77]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [730, 318, 1, 1],
+                "end": [1160, 315, 1, 1]
+            }
+        },
+        "next": [
+            "02_DeployR_Nko_Confirm",
+            "02_DeployR_Nko",
+            "02_Deploy_Nko"
+        ]
+    },
+    "02_DeployR_Nko_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deploy_nko.png",
+                "roi": [931, 604, 107, 107]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "02_Deploy_Nko",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "02_DeployR_Nko_Wait"
+        ]
+    },
+    "02_DeployR_Nko_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "02_Deploy_Ami"
+        ]
+    },
+    "02_Deploy_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deploy_ami.png",
+                "roi": [1168, 605, 107, 103]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [1220, 661, 1, 1],
+                "end": [932, 470, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_DeployR_Ami",
+            "[JumpBack]Public_Deploy_Cancel",
+            "02_Deploy_Ami"
+        ]
+    },
+    "02_DeployR_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deployr_ami.png",
+                "roi": [644, 241, 83, 91]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [872, 420, 1, 1],
+                "end": [864, 68, 1, 1]
+            }
+        },
+        "next": [
+            "02_DeployR_Ami_Confirm",
+            "02_DeployR_Ami",
+            "02_Deploy_Ami"
+        ]
+    },
+    "02_DeployR_Ami_Confirm": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/02/02_deploy_ami.png",
+                "roi": [1168, 605, 107, 103]
+            }
+        },
+        "inverse": true,
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Deploy_Cancel",
+            "02_Deploy_Ami",
+            "[JumpBack]Public_Battle_Speed_2x",
+            "02_DeployR_Ami_Wait"
+        ]
+    },
+    "02_DeployR_Ami_Wait": {
+        "pre_delay": 0,
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_Op_End"
+        ]
+    },
+
+    "02_Op_End": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_end.png",
+                "roi": [72, 294, 58, 59]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": true}
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_Wait_End"
+        ]
+    },
+    "02_Wait_End": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [300, 250, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Public_Pause_Fix",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "02_Wait_Ami",
+            "02_Wait_End"
+        ]
+    },
+    "02_Wait_Ami": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "battle/stage/01/01_amiya_dia.png",
+                "roi": [58, 55, 139, 147]
+            }
+        },
+        "next": [
+            "02_End_Tutorial"
+        ]
+    }
+}

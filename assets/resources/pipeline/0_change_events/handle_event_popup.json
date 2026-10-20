@@ -1,0 +1,201 @@
+{
+    "Event_Changable": {
+        "pre_wait_freezes": 2000,
+        "next": [
+            "[JumpBack]Home_Popup_Any_Popup",
+            "[JumpBack]Event_First_Reward",
+            "[JumpBack]Event_Second_Reward",
+            "[JumpBack]Event_Third_Reward",
+            "Start_Gatcha"
+        ]
+    },
+
+    "Event_First_Reward": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [174,93,7,6],
+                "lower": [250, 100, 0],
+                "upper": [255, 110, 5],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [100, 100, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_First_Reward",
+            "Event_First_Reward_1"
+        ]
+    },
+    "Event_Second_Reward": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [174,147,7,7],
+                "lower": [250, 100, 0],
+                "upper": [255, 110, 5],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [100, 150, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Second_Reward",
+            "Event_Second_Reward_1"
+        ]
+    },
+    "Event_Third_Reward": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "roi": [174,201,7,7],
+                "lower": [250, 100, 0],
+                "upper": [255, 110, 5],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [100, 205, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Third_Reward",
+            "Event_Third_Reward_1"
+        ]
+    },
+    "Event_Return_Main": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1235, 103, 1, 1]
+            }
+        },
+        "post_delay": 1000,
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Main_Check",
+            "Event_Return_Main"
+        ]
+    },
+    "Event_Main_Check": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [362,554,61,37],
+                "expected": ".*친구.*"
+            }
+        },
+        "pre_wait_freezes": 300,
+        "next": []
+    },
+
+
+
+
+
+
+
+    "Event_First_Reward_1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [50,607,101,31],
+                "expected": ".*종료.*시간.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [542,385,1,1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Return_Main"
+        ]
+    },
+
+
+
+
+    "Event_Second_Reward_1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [1041,517,170,54],
+                "expected": ".*소원.*티켓.*선택.*"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [293,276, 1, 1]
+            }
+        },
+        "next": [
+            "Event_Second_Reward_2"
+        ]
+    },
+    "Event_Second_Reward_2": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [294,421, 1, 1]
+            }
+        },
+        "next": [
+            "Event_Second_Reward_3"
+        ]
+    },
+    "Event_Second_Reward_3": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [1041,517,170,54],
+                "expected": ".*뽑기.*"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Return_Main"
+        ]
+    },
+
+
+
+
+
+
+    "Event_Third_Reward_1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi" : [944,492,131,43],
+                "expected": ".*수령하기.*"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Event_Return_Main"
+        ]
+    }
+}

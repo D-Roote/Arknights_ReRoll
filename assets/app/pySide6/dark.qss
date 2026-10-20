@@ -1,0 +1,517 @@
+/* 어두운 색상 스키마: 검정보다 군청과 남색 계열의 표면색을 사용한다. */
+QWidget {
+    background-color: transparent;
+    color: #DCE6F2;
+}
+
+QMainWindow,
+QMenuBar,
+QStatusBar {
+    background-color: #111A2B;
+}
+
+QMenu#logContextMenu {
+    background-color: #172238;
+    color: #DCE6F2;
+    border-color: #30415E;
+}
+
+QMenu#logContextMenu::item {
+    color: #DCE6F2;
+}
+
+QMenu#logContextMenu::item:selected:enabled {
+    background-color: #243954;
+    color: #F0F6FD;
+}
+
+QMenu#logContextMenu::item:disabled {
+    color: #7389A7;
+}
+
+QMenu#logContextMenu::separator {
+    background-color: #30415E;
+}
+
+QWidget#centralwidget,
+QWidget#mainTab,
+QWidget#extraFeaturesTab,
+QWidget#settingTab {
+    background-color: #111A2B;
+}
+
+QWidget#appHeader {
+    background-color: #172238;
+    border-bottom: 1px solid #30415E;
+}
+
+QLabel#appBrandLabel,
+QLabel#workspaceSectionTitle {
+    color: #F0F6FD;
+}
+
+QLabel#optionEmptyState {
+    color: #8CA0BA;
+}
+
+QFrame#optionGroupSeparator {
+    background-color: #30415E;
+}
+
+QComboBox#monitorComboBox,
+QLineEdit#monitorLineEdit {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+}
+
+QComboBox#monitorComboBox QAbstractItemView {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+    selection-background-color: #24445F;
+    selection-color: #63D2F5;
+}
+
+QPushButton#monitorActionButton {
+    background-color: #1E2D46;
+    border-color: #405474;
+    color: #CCD7E5;
+}
+
+QPushButton#monitorActionButton:hover {
+    background-color: #283A55;
+    color: #63D2F5;
+}
+
+QFrame#screenPreview {
+    background-color: #152238;
+    color: #94A3B8;
+    border: 1px solid #30415E;
+    border-radius: 8px;
+}
+
+QLabel#monitorStatus {
+    color: #AEBFD2;
+}
+
+QPushButton#dashboardNavButton,
+QPushButton#extraFeaturesNavButton,
+QPushButton#settingsNavButton {
+    background-color: transparent;
+    color: #AEBFD2;
+}
+
+QPushButton#dashboardNavButton:hover,
+QPushButton#extraFeaturesNavButton:hover,
+QPushButton#settingsNavButton:hover {
+    background-color: #253751;
+    color: #E5EDF6;
+}
+
+QPushButton#dashboardNavButton:checked,
+QPushButton#extraFeaturesNavButton:checked,
+QPushButton#settingsNavButton:checked {
+    background-color: #24445F;
+    color: #63D2F5;
+}
+
+QWidget#_1_settingStartWidget,
+QWidget#_2_settingWidget,
+QWidget#_3_logPrintWidget {
+    background-color: #172238;
+    border-color: #30415E;
+}
+
+QSplitter#workspaceSplitter::handle:horizontal {
+    background-color: transparent;
+}
+
+QFrame#monitorSection,
+QFrame#monitorLogSection {
+    background-color: #172238;
+    border-color: #30415E;
+}
+
+QLabel#monitorDragHandle {
+    color: #8CA0BA;
+}
+
+QToolButton#monitorSectionToggle {
+    color: #E5EDF6;
+}
+
+QToolButton#monitorSectionToggle:hover {
+    color: #63D2F5;
+}
+
+QLabel#monitorFutureDescription {
+    color: #AEBFD2;
+}
+
+QFrame#line,
+QFrame#line_4 {
+    background-color: #30415E;
+}
+
+QListWidget {
+    background-color: #172238;
+    border-color: #30415E;
+}
+
+QFrame#taskListContainer {
+    background-color: #172238;
+    border-color: #30415E;
+}
+
+QWidget#taskDeletePage {
+    background-color: #172238;
+}
+
+QFrame#taskListSeparator {
+    background-color: #30415E;
+}
+
+QWidget#taskListFooter {
+    background-color: #168FBE;
+}
+
+QWidget#taskListFooter[groupHovered="true"]:!disabled {
+    background-color: #1AA6D8;
+}
+
+QWidget#taskListFooter:disabled {
+    background-color: #34445E;
+}
+
+QListWidget::item:hover {
+    background-color: #22314A;
+}
+
+QListWidget#taskPickerPopup::item:hover,
+QListWidget#taskPickerPopup::item:selected {
+    background-color: #168FBE;
+    color: #F5F9FD;
+}
+
+QToolTip {
+    background-color: #22314A;
+    color: #F5F9FD;
+    border-color: #405474;
+}
+
+QPushButton {
+    background-color: #168FBE;
+    color: #F5F9FD;
+}
+
+QPushButton:hover {
+    background-color: #1AA6D8;
+}
+
+QPushButton:pressed {
+    background-color: #11779F;
+}
+
+QPushButton:disabled {
+    background-color: #34445E;
+    color: #8192A9;
+}
+
+QPushButton#taskSettingsButton,
+QPushButton#endSettingBtn {
+    background-color: transparent;
+}
+
+QLabel#endWorkStatusLabel {
+    color: #D6E1F0;
+}
+
+QLabel#endStatusLabel,
+QLabel#afterActionHint {
+    color: #9FB0C9;
+}
+
+QWidget#settingStartWidget_2 QFrame#line {
+    background-color: #31435E;
+}
+
+QPushButton#stopBtn {
+    background-color: #D95F6A;
+}
+
+QPushButton#stopBtn:hover {
+    background-color: #EB7180;
+}
+
+QWidget#OptionItemWidget,
+QWidget > QLabel,
+QCheckBox,
+QRadioButton {
+    background-color: transparent;
+}
+
+QLabel#taskItemLabel[muted="true"] {
+    color: #94A3B8;
+}
+
+QLineEdit#optionInput,
+QComboBox#optionSelect {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+    selection-background-color: #168FBE;
+}
+
+QLineEdit#optionInput:hover,
+QLineEdit#optionInput:focus,
+QComboBox#optionSelect:hover {
+    border-color: #2BB3E3;
+}
+
+QLineEdit#optionInput:disabled,
+QComboBox#optionSelect:disabled {
+    background-color: #293950;
+    color: #7E90A8;
+}
+
+QLineEdit#optionInput[inputValid="false"] {
+    border-color: #EB7180;
+}
+
+QLabel#optionInputError {
+    color: #F08A94;
+}
+
+QComboBox#optionSelect QAbstractItemView {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+    selection-background-color: #168FBE;
+    selection-color: #F5F9FD;
+}
+
+QComboBox#optionSelect:hover {
+    background-color: #283A55;
+}
+
+QComboBox#optionSelect QAbstractItemView::item:hover {
+    background-color: #283A55;
+    color: #63D2F5;
+}
+
+QComboBox#optionSelect QAbstractItemView::item:selected {
+    background-color: #168FBE;
+    color: #F5F9FD;
+}
+
+QTextEdit {
+    background-color: #172238;
+    border-color: #30415E;
+    color: #BBC9D9;
+}
+
+QLabel#logTitleLabel {
+    color: #AEBFD2;
+}
+
+QWidget#logActionMenu {
+    background-color: #1E2D46;
+}
+
+QToolButton#logLatestButton,
+QToolButton#logCopyButton,
+QToolButton#logClearButton,
+QToolButton#logSaveButton,
+QToolButton#logMenuToggleButton {
+    background-color: transparent;
+    border-color: transparent;
+    color: #CCD7E5;
+}
+
+QToolButton#logLatestButton:hover,
+QToolButton#logCopyButton:hover,
+QToolButton#logClearButton:hover,
+QToolButton#logSaveButton:hover,
+QToolButton#logMenuToggleButton:hover {
+    background-color: #283A55;
+    border-color: transparent;
+    color: #F5F9FD;
+}
+
+QToolButton#logLatestButton {
+    color: #63D2F5;
+}
+
+QToolButton#logMenuToggleButton[menuExpanded="true"] {
+    background-color: #283A55;
+    border-color: transparent;
+}
+
+QScrollBar:vertical,
+QScrollBar:horizontal,
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background-color: transparent;
+}
+
+QScrollBar::handle:vertical,
+QScrollBar::handle:horizontal,
+QScrollBar::handle:vertical:hover,
+QScrollBar::handle:horizontal:hover {
+    background-color: #168FBE;
+    border-color: #168FBE;
+}
+
+QScrollBar[contextual="true"]:vertical,
+QScrollBar[contextual="true"]::add-page:vertical,
+QScrollBar[contextual="true"]::sub-page:vertical {
+    background-color: #172238;
+}
+
+QScrollBar[contextual="true"]::handle:vertical {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+QScrollBar[contextual="true"][contextualVisible="true"]::handle:vertical {
+    background-color: #168FBE;
+    border-color: #168FBE;
+}
+
+QWidget#settingsPanel,
+QWidget#settingsDetailContents {
+    background-color: transparent;
+}
+
+QListWidget#settingsNavigation,
+QListWidget#extraNavigation {
+    background-color: transparent;
+    border: none;
+}
+
+QListWidget#settingsNavigation::item,
+QListWidget#extraNavigation::item {
+    background-color: transparent;
+    color: #AEBFD2;
+}
+
+QListWidget#settingsNavigation::item:hover,
+QListWidget#extraNavigation::item:hover {
+    background-color: #22314A;
+}
+
+QListWidget#settingsNavigation::item:selected,
+QListWidget#extraNavigation::item:selected {
+    background-color: #243E5C;
+    color: #47C2ED;
+}
+
+QScrollArea#settingsDetailScroll,
+QScrollArea#extraFeatureScroll {
+    background-color: transparent;
+}
+
+QFrame#settingsSection,
+QFrame#multiToolbar,
+QFrame#multiInstanceCard,
+QFrame#extraFeatureCard {
+    background-color: #172238;
+    border-color: #30415E;
+}
+
+QFrame#multiInstanceCard QPushButton#monitorActionButton:checked {
+    background-color: #283A55;
+    border-color: #63D2F5;
+    color: #63D2F5;
+}
+
+QToolButton#extraNavigationToggle {
+    background-color: #30415E;
+    color: #AEBFD2;
+}
+
+QToolButton#extraNavigationToggle:hover {
+    background-color: #24445F;
+    color: #63D2F5;
+}
+
+QToolButton#extraNavigationToggle:focus {
+    border-color: #63D2F5;
+}
+
+QLabel#settingsSectionTitle {
+    color: #E7EEF8;
+}
+
+QLabel#settingsSectionDescription,
+QLabel#settingsRowDescription {
+    color: #9FAFC3;
+}
+
+QLabel#settingsRowTitle {
+    color: #DCE6F2;
+}
+
+QFrame#settingsRow {
+    border-top-color: #263650;
+}
+
+QLabel#controllerDetails {
+    background-color: #1E2D46;
+    color: #AEBFD2;
+    border-color: #405474;
+}
+
+QLabel#programPathStatus {
+    background-color: #1E2D46;
+    color: #AEBFD2;
+    border-color: #405474;
+}
+
+QLabel#programPathStatus[pathValid="true"] {
+    border-color: #4FAF83;
+    color: #8ED9B6;
+}
+
+QLabel#programPathStatus[pathValid="false"] {
+    border-color: #D95F6A;
+    color: #F08A94;
+}
+
+QLineEdit#programPathInput {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+}
+
+QLineEdit#programPathInput:hover,
+QLineEdit#programPathInput:focus {
+    border-color: #2BB3E3;
+}
+
+QComboBox#settingsComboBox {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+}
+
+QComboBox#settingsComboBox:hover,
+QComboBox#settingsComboBox:focus {
+    border-color: #2BB3E3;
+}
+
+QComboBox#settingsComboBox:disabled {
+    background-color: #293950;
+    color: #7E90A8;
+}
+
+QComboBox#settingsComboBox QAbstractItemView {
+    background-color: #1E2D46;
+    color: #E5EDF6;
+    border-color: #405474;
+    selection-background-color: #168FBE;
+    selection-color: #F5F9FD;
+}

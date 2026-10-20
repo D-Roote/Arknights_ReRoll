@@ -1,0 +1,5 @@
+# External Agent only; match MFWSide v1.0's SDK and native device helpers.
+MaaFw==5.12.3
+MaaAgentBinary==1.0.1
+numpy==2.2.6
+StrEnum==0.4.15

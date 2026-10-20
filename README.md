@@ -27,7 +27,7 @@ Windows x64 환경에서 사용합니다. 별도로 Python을 설치하거나 �
 | 메모리 | 4~5 GB |
 | 해상도 | 1280×720 |
 | DPI | 240 |
-| 프레임 | 60 FPS |
+| 프레임 | 30 FPS |
 | Root 권한 | 활성화 |
 | ADB | 연결 허용 |
 
@@ -44,6 +44,5 @@ Windows x64 환경에서 사용합니다. 별도로 Python을 설치하거나 �
 ## 오픈소스 및 출처
 
 - [MaaReroll](https://github.com/CookieHCl/MaaReroll)의 파이프라인과 이미지 리소스를 기반으로 재구성·수정했습니다.
-- 전투 관련 파이프라인에는 이 프로젝트 작성자가 이전에 MaaReroll 포크에서 작업·기여한 내용이 포함되어 있습니다.
 - MaaReroll의 원본 저작권 고지와 MIT 라이선스는 [LICENSE.MaaReroll](LICENSE.MaaReroll)에 보존했습니다.
 - 실행 앱은 [MFWSide](https://github.com/D-Roote/MFWSide), 자동화 엔진은 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)를 사용합니다.

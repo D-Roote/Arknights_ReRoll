@@ -3,9 +3,9 @@
 .SYNOPSIS
 Install MFWSide, ANReroll resources and an isolated Python Agent environment.
 .EXAMPLE
-powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Setup.ps1
 .EXAMPLE
-.\setup.ps1 -InstallDir C:\Games\ANReroll -ResourceTag v0.1.0 -Launch
+.\Setup.ps1 -InstallDir C:\Games\ANReroll -ResourceTag v1.0 -Launch
 .NOTES
 No administrator rights, system Python installation, PATH edits or device input.
 Release ZIPs require GitHub SHA256 digests or matching .sha256 assets.
@@ -28,6 +28,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $script:AnrerollSetupPath = $PSCommandPath
+# A generated CMD executes this same payload in memory. Only that one launcher
+# is allowed in a fresh install directory; unrelated files remain protected.
+if (-not $script:AnrerollSetupPath -and $env:ANREROLL_SETUP_LAUNCHER) {
+    $launcher = [IO.Path]::GetFullPath($env:ANREROLL_SETUP_LAUNCHER)
+    if ([IO.Path]::GetFileName($launcher) -notmatch '^Setup_[A-Za-z0-9][A-Za-z0-9._-]{0,63}\.cmd$' -or
+        -not (Test-Path -LiteralPath $launcher -PathType Leaf)) { throw 'Invalid installer launcher.' }
+    $script:AnrerollSetupPath = $launcher
+}
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 function Read-JsonFile([string]$Path) {

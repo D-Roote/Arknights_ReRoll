@@ -1,0 +1,4 @@
+# Installer checksums must continue to match after a clone/checkout.
+/Distribution/*.ps1 -text
+/Distribution/*.cmd -text
+/Distribution/*.sha256 text eol=lf

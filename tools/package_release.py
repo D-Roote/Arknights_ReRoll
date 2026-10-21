@@ -1,4 +1,4 @@
-"""Create release assets from the worktree, respecting Git ignore rules."""
+"""Create resource ZIPs and versioned standalone installers from the worktree."""
 from __future__ import annotations
 
 import argparse
@@ -16,6 +16,74 @@ PRIVATE = ('assets/user/', 'assets/saved/', 'assets/failed/',
 SUPPORT = ('deployment/runtime.json', 'deployment/agent-requirements.txt',
            'tools/verify_install.py', 'LICENSE.MaaReroll', 'README.md', 'DEPLOYMENT.md')
 MODELS = tuple('assets/resources/model/ocr/ko/' + name for name in ('det.onnx', 'rec.onnx', 'keys.txt'))
+PAYLOAD_MARKER = '# ANREROLL_POWERSHELL_PAYLOAD'
+
+
+def validate_version(version: str) -> None:
+    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,63}', version):
+        raise ValueError('Use a simple release version, for example v1.0.')
+
+
+def cmd_installer(script: str) -> bytes:
+    # The full, readable PS1 is embedded: no second installer download, temporary
+    # PS1, encoded command, admin prompt or persistent execution-policy changes.
+    command = (
+        "$ErrorActionPreference='Stop'; try { "
+        "if ($PSVersionTable.PSVersion -lt [version]'5.1') { throw 'PowerShell 5.1 or newer is required.' }; "
+        "$launcher=[IO.Path]::GetFullPath($env:ANREROLL_SETUP_LAUNCHER); "
+        "$content=[IO.File]::ReadAllText($launcher,[Text.Encoding]::UTF8); "
+        f"$marker='{PAYLOAD_MARKER}'+[char]13+[char]10; "
+        "$offset=$content.IndexOf($marker,[StringComparison]::Ordinal); "
+        "if ($offset -lt 0) { throw 'Installer payload is missing.' }; "
+        "Set-Location -LiteralPath ([IO.Path]::GetDirectoryName($launcher)); "
+        "& ([scriptblock]::Create($content.Substring($offset+$marker.Length))) "
+        "} catch { Write-Error $_; exit 1 }"
+    )
+    header = [
+        '@echo off',
+        'setlocal DisableDelayedExpansion',
+        'set "ANREROLL_SETUP_LAUNCHER=%~f0"',
+        f'powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "{command}"',
+        'set "ANREROLL_SETUP_EXIT=%ERRORLEVEL%"',
+        'if not "%ANREROLL_SETUP_EXIT%"=="0" echo Setup failed. Review the error above.',
+        'if not defined ANREROLL_SETUP_NO_PAUSE pause',
+        'exit /b %ANREROLL_SETUP_EXIT%',
+        '',
+        PAYLOAD_MARKER,
+    ]
+    return ('\r\n'.join(header) + '\r\n' + script.replace('\r\n', '\n').replace('\n', '\r\n')).encode('utf-8')
+
+
+def build_installers(root: Path, output: Path, version: str, *, replace: bool = False) -> list[Path]:
+    validate_version(version)
+    root, output = root.resolve(), output.resolve()
+    if output.is_relative_to(root / 'assets'):
+        raise ValueError('Output must not be inside assets.')
+    script = checked_file(root, 'Setup.ps1').read_text(encoding='utf-8-sig')
+    default = "    [string]$ResourceTag = 'latest',"
+    if script.count(default) != 1:
+        raise ValueError('Cannot pin the installer resource version; review Setup.ps1.')
+    script = script.replace(default, f"    [string]$ResourceTag = '{version}',")
+    script = script.replace('#Requires -Version 5.1\n', f'#Requires -Version 5.1\n# ANReroll resource release: {version}\n', 1)
+    contents = {
+        output / f'Setup_{version}.ps1': script.replace('\n', '\r\n').encode('utf-8-sig'),
+        output / f'Setup_{version}.cmd': cmd_installer(script),
+    }
+    installers = list(contents)
+    for path, data in list(contents.items()):
+        digest = hashlib.sha256(data).hexdigest()
+        contents[path.with_suffix(path.suffix + '.sha256')] = f'{digest}  {path.name}\n'.encode('ascii')
+    # Check all collisions before writing anything, and never replace old
+    # versions implicitly. Re-running unchanged generation is safe/idempotent.
+    for path, data in contents.items():
+        if path.is_symlink():
+            raise ValueError(f'Refusing installer symlink: {path}')
+        if path.exists() and not replace and path.read_bytes() != data:
+            raise FileExistsError(f'Preserving existing installer: {path}; use --replace-installers explicitly.')
+    output.mkdir(parents=True, exist_ok=True)
+    for path, data in contents.items():
+        path.write_bytes(data)
+    return installers
 
 
 def sha256(path: Path) -> str:
@@ -78,8 +146,7 @@ def checksum(archive: Path) -> Path:
 
 
 def build(root: Path, output: Path, version: str) -> list[Path]:
-    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,63}', version):
-        raise ValueError('Use a simple release version, for example v0.1.0.')
+    validate_version(version)
     root, output = root.resolve(), output.resolve()
     if output.is_relative_to(root / 'assets'):
         raise ValueError('Output must not be inside assets.')
@@ -113,8 +180,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--version', required=True)
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'dist')
+    parser.add_argument('--installer-output-dir', type=Path, default=ROOT / 'Distribution')
+    parser.add_argument('--installers-only', action='store_true', help='Generate installers without rebuilding the resource ZIP.')
+    parser.add_argument('--replace-installers', action='store_true', help='Explicitly replace generated installers of the same version.')
     args = parser.parse_args()
-    for path in build(ROOT, args.output_dir, args.version):
+    assets = [] if args.installers_only else build(ROOT, args.output_dir, args.version)
+    assets += build_installers(ROOT, args.installer_output_dir, args.version, replace=args.replace_installers)
+    for path in assets:
         print(f'{path}\n  SHA256 {sha256(path)}')
 
 

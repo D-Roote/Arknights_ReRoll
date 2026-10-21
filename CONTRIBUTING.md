@@ -1,6 +1,6 @@
 # ANReroll 개발 및 기여 가이드
 
-릴리즈용 리소스 ZIP은 [설치·배포 안내](DEPLOYMENT.md)에 따라 `tools/package_release.py`로 생성합니다. 이 문서 아래의 MAABA 유래 옵션 예제와 게임별 TODO는 참고 자료이며, ANReroll 배포 절차와 구분합니다.
+릴리즈용 리소스 ZIP과 버전별 설치 파일은 `tools/package_release.py`로 생성합니다. 상황별 생성·업데이트·게시 명령은 [DISTRIBUTION.md](DISTRIBUTION.md), 설치 상세는 [DEPLOYMENT.md](DEPLOYMENT.md)를 참고하세요. 이 문서 아래의 MAABA 유래 옵션 예제와 게임별 TODO는 참고 자료이며, ANReroll 배포 절차와 구분합니다.
 
 ## 목차
 

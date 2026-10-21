@@ -6,18 +6,19 @@
 
 Windows x64 환경에서 사용합니다. 별도로 Python을 설치하거나 관리자 권한으로 실행할 필요는 없습니다.
 
-1. [릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `setup.ps1`을 내려받습니다.
-2. 다운로드한 폴더에서 PowerShell을 열고 실행합니다.
+1. [릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 **`Setup_v1.0.cmd` 하나만** 내려받습니다.
+2. 설치할 새 폴더에 CMD 파일만 넣고 더블클릭합니다. 필요한 실행 앱·리소스·Python·Agent 환경을 자동으로 구성합니다.
+3. 설치 완료 후 같은 폴더의 `Start-ANReroll.cmd` 또는 `MFWSide.exe`를 실행합니다.
+
+설치 위치 변경·업데이트 등 추가 옵션이 필요할 때는 CMD 대신 `Setup_v1.0.ps1`을 받아 PowerShell에서 실행합니다.
 
    ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll
    ```
 
-3. 설치 완료 후 설치 폴더의 `Start-ANReroll.cmd`를 더블클릭합니다.
+기본 설치 위치는 **CMD 파일이 있는 폴더**, PS1로 실행할 때는 **PowerShell의 현재 폴더**입니다. 첫 설치는 빈 폴더 또는 실행할 설치 파일 하나만 있는 폴더에서 진행하세요. 두 설치 파일을 모두 받을 필요는 없습니다. 버전별 설치 파일은 해당 리소스 릴리즈를 기본값으로 사용하며, 시스템 Python·PATH는 변경하지 않습니다. 다운로드 차단이나 Windows 보안 확인이 표시되면 출처를 확인하세요.
 
-설치 스크립트가 실행 앱·리소스·현재 OCR 모델·로컬 Python·Agent용 venv와 의존성을 구성합니다. 기본 설치 위치는 **PowerShell에서 명령을 실행한 현재 폴더**입니다. 예를 들어 `C:\Games\AR`에서 실행하면 그 폴더에 바로 설치됩니다. 첫 설치는 빈 폴더 또는 실행할 `setup.ps1`만 있는 폴더에서 진행하세요. 시스템 Python·PATH는 변경하지 않으며, `setup.ps1` 자체는 더블클릭 대신 위 명령으로 실행합니다.
-
-설치 위치 변경, 업데이트, 배포물 생성은 [상세 설치·배포 안내](DEPLOYMENT.md)를 참고하세요.
+설치 상세는 [DEPLOYMENT.md](DEPLOYMENT.md), 파이프라인·MFWSide 업데이트 및 배포 명령은 [DISTRIBUTION.md](https://github.com/D-Roote/Arknights_ReRoll/blob/main/DISTRIBUTION.md)를 참고하세요.
 
 ## MuMu Player 설정
 

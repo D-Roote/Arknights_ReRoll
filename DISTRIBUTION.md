@@ -2,6 +2,14 @@
 
 명령은 **ANReroll 저장소 루트**에서 실행합니다. 설치 상세 동작과 옵션은 [DEPLOYMENT.md](DEPLOYMENT.md), 사용자 안내는 [README.md](README.md)를 참고하세요. 이 운영 문서는 저장소에서 관리하며, 기존 설치 스크립트와의 리소스 ZIP 호환성을 위해 ZIP에는 추가하지 않습니다.
 
+## 버전 규칙과 전환 시점
+
+- 새 버전·태그·파일명은 `1.0.0`, `1.0.1`, `1.1.0`처럼 **`v` 없이 점으로 구분한 세 정수**로 통일합니다. `01.0.0` 같은 선행 0은 사용하지 않습니다.
+- 생성 도구의 `--version`, 리소스 ZIP의 manifest 버전과 설치 파일의 기본 `ResourceTag`는 같은 표기를 사용합니다. `assets/resources/interface.json`의 표시 버전도 해당 리소스 버전으로 변경하세요.
+- MFWSide 태그는 독립적으로 관리합니다. 현재 차기 대상은 `deployment/runtime.json`의 `app_tag: 1.0.0`입니다. 이후 앱 릴리즈가 바뀌면 실제 게시된 태그로 갱신하세요.
+- 지금은 **ANReroll 파이프라인·MFWSide 수정 후 `1.0.0`을 게시하기 위한 준비 단계**입니다. 새 기본 설치는 두 `1.0.0` 릴리즈가 모두 올라온 뒤 실행해야 합니다.
+- 기존 공개 `v1.0` 릴리즈·다운로드 URL·`Distribution/Setup_v1.0.*`는 유지합니다. 아직 태그를 변경하거나 새 릴리즈를 게시하지 않았습니다.
+
 ## 설치 파일 구분
 
 | 파일 | 용도 |
@@ -11,7 +19,7 @@
 | `Distribution/Setup_<버전>.ps1` | 설치 위치·버전·업데이트 등 추가 옵션을 지정할 때 사용 |
 | 각 설치 파일의 `.sha256` | 다운로드·업로드 무결성 확인용. 설치 실행에 필수인 파일은 아님 |
 
-예를 들어 `Setup_v1.0.cmd`와 `Setup_v1.0.ps1`은 기본 리소스가 `v1.0`으로 고정됩니다. 파일명만 바꾸지 말고 생성 명령의 `--version`을 변경하세요. PS1에서는 `-ResourceTag`로 이 기본값을 덮어쓸 수 있습니다.
+예를 들어 `Setup_1.0.0.cmd`와 `Setup_1.0.0.ps1`은 기본 리소스가 `1.0.0`으로 고정됩니다. 파일명만 바꾸지 말고 생성 명령의 `--version`을 변경하세요. PS1에서는 `-ResourceTag`로 이 기본값을 덮어쓸 수 있습니다.
 
 CMD에는 동일 버전의 PowerShell 설치 코드 전체가 평문으로 포함됩니다. 사용자는 **CMD 하나만** 받아 새 폴더에서 실행하면 됩니다. 별도 PS1을 내려받거나 임시 PS1을 만들지 않으며, 실행 앱·리소스·로컬 Python·Agent 의존성은 인터넷에서 자동 다운로드합니다. 추가 인수는 CMD에서 전달하지 않습니다. 사용자 설정이 필요하면 PS1을 사용하세요.
 
@@ -19,32 +27,32 @@ CMD에는 동일 버전의 PowerShell 설치 코드 전체가 평문으로 포�
 
 ## 1. 사용자: 신규 설치
 
-기본 설치는 [릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `Setup_v1.0.cmd` 하나를 새 설치 폴더로 내려받아 더블클릭합니다. 완료 후 `Start-ANReroll.cmd` 또는 `MFWSide.exe`로 실행합니다. 설치 자체는 앱·앱플레이어·게임 작업을 실행하지 않습니다.
+기본 설치는 [릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `Setup_1.0.0.cmd` 하나를 새 설치 폴더로 내려받아 더블클릭합니다. 완료 후 `Start-ANReroll.cmd` 또는 `MFWSide.exe`로 실행합니다. 설치 자체는 앱·앱플레이어·게임 작업을 실행하지 않습니다.
 
 옵션이 필요하면 CMD 대신 PS1만 받고 실행합니다.
 
 ```powershell
 # 현재 PowerShell 폴더에 기본 옵션으로 설치
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1
 
 # 설치 위치를 별도로 지정
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll
 
 # 설치 후 앱도 실행: 기존 앱의 자동 시작 설정에 주의
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Launch
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Launch
 ```
 
 PS1은 스크립트 위치가 아니라 **PowerShell의 현재 폴더**가 기본 설치 위치입니다. CMD는 실행 중 파일의 폴더로 이동한 뒤 같은 설치 코드를 실행합니다. PS1의 일반 더블클릭 실행은 Windows에서 보장되지 않습니다. [PowerShell 스크립트 실행 안내](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-5.1)
 
 ## 2. 사용자: 파이프라인·리소스 업데이트
 
-MFWSide와 실행 중인 작업을 모두 종료한 뒤, 사용할 릴리즈의 PS1을 받아 실행합니다. 다음의 `v1.1`은 **해당 릴리즈가 실제 게시되었을 때** 사용하는 예시입니다.
+MFWSide와 실행 중인 작업을 모두 종료한 뒤, 사용할 릴리즈의 PS1을 받아 실행합니다. 다음의 `1.1.0`은 **해당 릴리즈가 실제 게시되었을 때** 사용하는 예시입니다.
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.1.ps1 -InstallDir C:\Games\ANReroll -Update
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.1.0.ps1 -InstallDir C:\Games\ANReroll -Update
 
 # 같은 태그의 리소스 ZIP만 교체된 경우
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Update
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update
 ```
 
 `-Update` 없이 재실행하면 완료된 설치의 파일을 교체하지 않습니다. 최신 버전이라는 이유만으로 CMD가 기존 설치를 자동 업데이트하지도 않습니다.
@@ -61,14 +69,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -Instal
 리소스가 지정한 앱 태그가 그대로라면 일반 업데이트로 새 앱 ZIP도 확인합니다.
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Update
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update
 ```
 
 ### 새로운 MFWSide 태그를 직접 선택하는 경우
 
 ```powershell
-# MFWSide v1.1이 게시되었고 현재 리소스와 SDK가 호환될 때의 예시
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Update -AppTag v1.1
+# MFWSide 1.1.0이 게시되었고 현재 리소스와 SDK가 호환될 때의 예시
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update -AppTag 1.1.0
 ```
 
 이 명령은 관리되는 앱·리소스를 함께 재설치합니다. 앱만 따로 교체하는 전용 스위치는 없습니다. 기본 앱 버전은 리소스 ZIP의 `deployment/runtime.json`에 있는 `app_tag`이며, **자동으로 MFWSide의 최신 버전을 선택하지 않습니다.** `BUILD-INFO.json`의 MaaFW 버전이 맞지 않으면 중단합니다.
@@ -100,7 +108,7 @@ git status --short
 ### 새 버전의 전체 배포물 생성
 
 ```powershell
-$Version = 'v1.1'
+$Version = '1.0.0'
 python .\tools\package_release.py --version $Version
 ```
 
@@ -108,13 +116,13 @@ python .\tools\package_release.py --version $Version
 
 ```text
 dist/
-  ANReroll-resources-v1.1.zip
-  ANReroll-resources-v1.1.zip.sha256
+  ANReroll-resources-1.0.0.zip
+  ANReroll-resources-1.0.0.zip.sha256
 Distribution/
-  Setup_v1.1.ps1
-  Setup_v1.1.ps1.sha256
-  Setup_v1.1.cmd
-  Setup_v1.1.cmd.sha256
+  Setup_1.0.0.ps1
+  Setup_1.0.0.ps1.sha256
+  Setup_1.0.0.cmd
+  Setup_1.0.0.cmd.sha256
 ```
 
 `Distribution`의 작은 설치 파일들은 버전별로 Git에 보관하며, 리소스 ZIP은 Git 대신 릴리즈에 첨부합니다. 설치 파일의 바이트와 체크섬을 유지하도록 `.gitattributes`에서 줄바꿈 변환을 방지합니다.
@@ -123,10 +131,10 @@ Distribution/
 
 ```powershell
 # 리소스 ZIP은 건드리지 않음
-python .\tools\package_release.py --version v1.0 --installers-only
+python .\tools\package_release.py --version 1.0.0 --installers-only
 
 # 같은 버전의 설치 원본을 의도적으로 수정한 경우에만
-python .\tools\package_release.py --version v1.0 --installers-only --replace-installers
+python .\tools\package_release.py --version 1.0.0 --installers-only --replace-installers
 ```
 
 같은 내용의 재생성은 허용하지만 변경된 설치 파일을 같은 이름으로 덮어쓰는 것은 명시적 옵션이 필요합니다. 다른 버전의 파일은 바꾸지 않습니다.
@@ -134,7 +142,7 @@ python .\tools\package_release.py --version v1.0 --installers-only --replace-ins
 ### 새 GitHub 릴리즈 게시
 
 ```powershell
-$Version = 'v1.1'
+$Version = '1.0.0'
 $Repository = 'D-Roote/Arknights_ReRoll'
 $Artifacts = @(
     ".\dist\ANReroll-resources-$Version.zip",
@@ -151,14 +159,14 @@ git push origin main
 gh release create $Version @Artifacts --repo $Repository --target main --title "Arknights_ReRoll $Version" --notes "기본 설치는 Setup_$Version.cmd 하나를 새 폴더에서 실행하세요. 추가 옵션과 업데이트는 Setup_$Version.ps1을 사용하세요."
 ```
 
-`--version`에는 게시할 리소스 태그를 넣습니다. MFWSide 태그와 같을 필요는 없습니다. 자동 생성된 `Source code.zip`을 리소스 ZIP 대신 올리지 마세요. 패키징 도구 자체는 커밋·푸시·태그 생성·업로드를 하지 않습니다.
+`--version`에는 게시할 리소스 태그를 넣습니다. `1.0`이나 `v1.0.0`은 생성 단계에서 거부합니다. MFWSide 태그와 같을 필요는 없습니다. 자동 생성된 `Source code.zip`을 리소스 ZIP 대신 올리지 마세요. 패키징 도구 자체는 커밋·푸시·태그 생성·업로드를 하지 않습니다. 기존 릴리즈 교체를 설명하는 아래 명령도 `1.0.0`을 처음 게시한 **이후**에 사용하는 예시입니다.
 
 ### 기존 릴리즈의 리소스만 교체
 
 먼저 기존 첨부를 별도 폴더에 내려받아 보관합니다. `--clobber`는 기존 동명 첨부를 제거하고 업로드하므로 **실패 시 백업으로 다시 업로드해야 할 수 있습니다.** 릴리즈 버전·태그를 지우거나 강제 이동할 필요는 없습니다.
 
 ```powershell
-$Version = 'v1.0'
+$Version = '1.0.0'
 $Repository = 'D-Roote/Arknights_ReRoll'
 $Stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $Output = ".\dist\repack-$Version-$Stamp"
@@ -172,7 +180,7 @@ gh release upload $Version "$Output\ANReroll-resources-$Version.zip" "$Output\AN
 ### 기존 릴리즈에 버전별 설치 파일 첨부·교체
 
 ```powershell
-$Version = 'v1.0'
+$Version = '1.0.0'
 $Repository = 'D-Roote/Arknights_ReRoll'
 python .\tools\package_release.py --version $Version --installers-only
 gh release upload $Version ".\Distribution\Setup_$Version.cmd" ".\Distribution\Setup_$Version.cmd.sha256" ".\Distribution\Setup_$Version.ps1" ".\Distribution\Setup_$Version.ps1.sha256" --repo $Repository
@@ -184,14 +192,14 @@ gh release upload $Version ".\Distribution\Setup_$Version.cmd" ".\Distribution\S
 
 ```powershell
 # 게시된 파일명·크기·서버 digest 확인
-gh release view v1.0 --repo D-Roote/Arknights_ReRoll --json tagName,assets
+gh release view 1.0.0 --repo D-Roote/Arknights_ReRoll --json tagName,assets
 
 # 로컬 설치 파일의 해시 확인
-Get-FileHash .\Distribution\Setup_v1.0.ps1 -Algorithm SHA256
-Get-Content .\Distribution\Setup_v1.0.ps1.sha256
+Get-FileHash .\Distribution\Setup_1.0.0.ps1 -Algorithm SHA256
+Get-Content .\Distribution\Setup_1.0.0.ps1.sha256
 
 # 로컬 배포 ZIP으로 별도 폴더에 실제 설치 검증: 앱·게임 작업은 실행하지 않음
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup.ps1 -InstallDir C:\Temp\ANReroll-verify -ResourceArchive .\dist\ANReroll-resources-v1.0.zip -AppArchive C:\Downloads\MFWSide-v1.0-windows-x64.zip
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup.ps1 -InstallDir C:\Temp\ANReroll-verify -ResourceArchive .\dist\ANReroll-resources-1.0.0.zip -AppArchive C:\Downloads\MFWSide-1.0.0-windows-x64.zip
 ```
 
 로컬 ZIP 옆에는 동일 이름의 `.zip.sha256` 파일이 필요합니다. 설치 검증은 네이티브 MaaFW·OCR 모델·Agent 등록까지 확인하며, 게임 로그인·ADB/root 권한·다중 실행 안정성을 보장하지는 않습니다. 명령이 실패하면 다음 업로드·실행 단계로 넘어가지 말고 먼저 오류를 확인하세요.

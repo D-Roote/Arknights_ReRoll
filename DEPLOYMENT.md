@@ -1,14 +1,16 @@
 # 설치·배포 자동화
 
+차기 배포부터 버전은 `v` 접두사 없는 `1.0.0` 형식으로 통일합니다. 현재 설정은 ANReroll·MFWSide의 **`1.0.0` 릴리즈 게시를 준비한 상태**입니다. 두 릴리즈를 게시하기 전에는 새 기본 설치를 실행하지 마세요. 기존 공개 `v1.0` 릴리즈와 이전 설치 파일은 별도로 유지합니다.
+
 ## 사용자 설치
 
-Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치용 단일 파일은 `Setup_v1.0.cmd`, 추가 옵션용은 `Setup_v1.0.ps1`입니다. CMD는 **그 파일이 있는 폴더**, PS1은 **PowerShell의 현재 폴더**에 설치하며 `-InstallDir`로 다른 위치를 지정할 수 있습니다. 첫 설치는 쓰기 가능한 빈 로컬 폴더 또는 실행할 설치 파일 하나만 있는 폴더에서 진행하세요. Git, 관리자 권한, 시스템 Python 설치는 필요하지 않습니다.
+Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치용 단일 파일은 `Setup_1.0.0.cmd`, 추가 옵션용은 `Setup_1.0.0.ps1`입니다. CMD는 **그 파일이 있는 폴더**, PS1은 **PowerShell의 현재 폴더**에 설치하며 `-InstallDir`로 다른 위치를 지정할 수 있습니다. 첫 설치는 쓰기 가능한 빈 로컬 폴더 또는 실행할 설치 파일 하나만 있는 폴더에서 진행하세요. Git, 관리자 권한, 시스템 Python 설치는 필요하지 않습니다.
 
-1. [Arknights_ReRoll 릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `Setup_v1.0.cmd` 하나만 내려받아 새 폴더에서 더블클릭합니다. CMD에는 설치 코드가 포함되어 별도 PS1이 필요 없습니다.
-2. 추가 옵션을 지정하려면 CMD 대신 `Setup_v1.0.ps1`을 받고 PowerShell에서 실행합니다.
+1. [Arknights_ReRoll 릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `Setup_1.0.0.cmd` 하나만 내려받아 새 폴더에서 더블클릭합니다. CMD에는 설치 코드가 포함되어 별도 PS1이 필요 없습니다.
+2. 추가 옵션을 지정하려면 CMD 대신 `Setup_1.0.0.ps1`을 받고 PowerShell에서 실행합니다.
 
    ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_v1.0.ps1
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1
    ```
 
 3. 완료 메시지가 표시되면 설치 폴더의 `Start-ANReroll.cmd`를 실행합니다.
@@ -19,7 +21,7 @@ Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치�
 설치 스크립트는 다음을 자동 수행합니다.
 
 - GitHub API에서 지정한 리소스 릴리즈의 ZIP을 다운로드합니다. 저장소 원본 `Setup.ps1`의 기본값은 `latest`, 생성된 `Setup_<버전>.ps1`과 CMD의 기본값은 해당 버전입니다.
-- 리소스가 지정한 MFWSide 릴리즈를 다운로드합니다. 현재 검증 기준은 `v1.0`, MaaFW `5.12.3`입니다. 무조건 최신 앱으로 바꾸지 않으며, 앱의 `BUILD-INFO.json`과 리소스 SDK 버전이 다르면 설치를 중단합니다.
+- 리소스가 지정한 MFWSide 릴리즈를 다운로드합니다. 차기 대상 앱 태그는 `1.0.0`, 지정 SDK는 MaaFW `5.12.3`입니다. 새 앱 빌드의 SDK 버전을 확인한 후 게시하세요. 무조건 최신 앱으로 바꾸지 않으며, 앱의 `BUILD-INFO.json`과 리소스 SDK 버전이 다르면 설치를 중단합니다.
 - GitHub의 SHA-256 digest 또는 릴리즈의 `.sha256` 파일로 ZIP을 검증하고 안전하게 압축 해제합니다. 경로 이탈·심볼릭 링크·중복 파일·Windows 특수 파일명은 거부합니다.
 - 리소스 ZIP에 동봉한 **기존 한국어 OCR 모델 세 파일을 그대로** 설치하고 해시를 확인합니다. MaaCommonAssets의 다른 모델로 대체하지 않습니다.
 - 공식 Python NuGet 배포본 `3.13.10`을 설치 폴더에 풀어 `.venv`를 만듭니다. 이것은 `venv`와 `ensurepip`를 포함하는 Python 배포본이며, pip 설치가 제한되는 embeddable ZIP이 아닙니다. 별도 `nuget.exe`도 필요하지 않습니다.
@@ -60,19 +62,19 @@ ANReroll/
 
 ```powershell
 # 리소스 버전 고정
-.\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -ResourceTag v1.0
+.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -ResourceTag 1.0.0
 
 # 설치된 x64 Python 3.10~3.13 사용: 로컬 Python 다운로드 생략
-.\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -PythonExe C:\Python313\python.exe
+.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -PythonExe C:\Python313\python.exe
 
 # 설치 확인 후 앱도 실행 (기본값은 실행하지 않음)
-.\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Launch
+.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Launch
 
 # 앱을 닫은 뒤 리소스·앱의 관리 대상 파일 업데이트
-.\Setup_v1.0.ps1 -InstallDir C:\Games\ANReroll -Update
+.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update
 ```
 
-`-AppTag`로 다른 MFWSide 릴리즈를 지정할 수 있지만 SDK 버전이 맞아야 합니다. ZIP이 여러 개라 자동 선택이 불가능하면 `-ResourceAsset ANReroll-resources-v1.0.zip`으로 정확한 파일명을 지정합니다. CMD는 기본 설치용이며 추가 옵션은 전달하지 않습니다.
+`-AppTag`로 다른 MFWSide 릴리즈를 지정할 수 있지만 SDK 버전이 맞아야 합니다. ZIP이 여러 개라 자동 선택이 불가능하면 `-ResourceAsset ANReroll-resources-1.0.0.zip`으로 정확한 파일명을 지정합니다. CMD는 기본 설치용이며 추가 옵션은 전달하지 않습니다.
 
 이미 설치가 완료된 폴더에서 `-Update` 없이 재실행하면 기존 파일을 교체하지 않습니다. 업데이트는 이 스크립트가 만든 설치 폴더에만 허용하며 소스 저장소나 다른 파일·폴더가 있는 미관리 폴더에는 설치하지 않습니다. 예외는 실행 중인 PS1 또는 CMD 파일 하나뿐입니다. PS1을 다른 폴더에서 절대 경로로 실행해도 스크립트 위치가 아니라 PowerShell의 현재 폴더에 설치합니다. 소스 저장소에서 테스트할 때는 별도의 `-InstallDir`를 지정하세요.
 
@@ -89,15 +91,15 @@ ANReroll/
 저장소 루트에서 실행합니다. 패키징에는 Python 3.10 이상과 Git만 필요하고 MaaFW·PySide6를 설치할 필요는 없습니다.
 
 ```powershell
-python .\tools\package_release.py --version v1.0
+python .\tools\package_release.py --version 1.0.0
 ```
 
 `dist/`에 리소스 ZIP·체크섬이, `Distribution/`에 버전별 설치 파일·체크섬이 생성됩니다.
 
-- `dist/ANReroll-resources-v1.0.zip`
-- `dist/ANReroll-resources-v1.0.zip.sha256`
-- `Distribution/Setup_v1.0.ps1`, `Setup_v1.0.ps1.sha256`
-- `Distribution/Setup_v1.0.cmd`, `Setup_v1.0.cmd.sha256`
+- `dist/ANReroll-resources-1.0.0.zip`
+- `dist/ANReroll-resources-1.0.0.zip.sha256`
+- `Distribution/Setup_1.0.0.ps1`, `Setup_1.0.0.ps1.sha256`
+- `Distribution/Setup_1.0.0.cmd`, `Setup_1.0.0.cmd.sha256`
 
 설치 파일만 생성하려면 `--installers-only`를 추가합니다. 수정된 설치 원본으로 같은 버전을 재생성할 때는 `--replace-installers`를 명시합니다. 기본값은 기존 설치 파일을 보존합니다.
 
@@ -119,8 +121,8 @@ GitHub의 자동 생성 `Source code.zip`은 모델과 패키지 명세가 없�
 
 ```powershell
 .\Setup.ps1 -InstallDir C:\Temp\ANReroll-test `
-  -ResourceArchive .\dist\ANReroll-resources-v1.0.zip `
-  -AppArchive C:\Downloads\MFWSide-v1.0-windows-x64.zip
+  -ResourceArchive .\dist\ANReroll-resources-1.0.0.zip `
+  -AppArchive C:\Downloads\MFWSide-1.0.0-windows-x64.zip
 ```
 
 - `-PythonPackage`에 미리 받은 동일 버전 Python `.nupkg`를 지정할 수 있습니다. `runtime.json`의 해시와 일치해야 합니다.

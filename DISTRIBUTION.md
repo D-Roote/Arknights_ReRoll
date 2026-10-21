@@ -1,14 +1,13 @@
 # 배포·업데이트 명령어
 
-명령은 **ANReroll 저장소 루트**에서 실행합니다. 설치 상세 동작과 옵션은 [DEPLOYMENT.md](DEPLOYMENT.md), 사용자 안내는 [README.md](README.md)를 참고하세요. 이 운영 문서는 저장소에서 관리하며, 기존 설치 스크립트와의 리소스 ZIP 호환성을 위해 ZIP에는 추가하지 않습니다.
+명령은 **Arknights_Reroll 저장소 루트**에서 실행합니다. 설치 상세 동작과 옵션은 [DEPLOYMENT.md](DEPLOYMENT.md), 사용자 안내는 [README.md](README.md)를 참고하세요. 이 운영 문서는 저장소에서 관리하며, 기존 설치 스크립트와의 리소스 ZIP 호환성을 위해 ZIP에는 추가하지 않습니다.
 
 ## 버전 규칙과 전환 시점
 
-- 새 버전·태그·파일명은 `1.0.0`, `1.0.1`, `1.1.0`처럼 **`v` 없이 점으로 구분한 세 정수**로 통일합니다. `01.0.0` 같은 선행 0은 사용하지 않습니다.
-- 생성 도구의 `--version`, 리소스 ZIP의 manifest 버전과 설치 파일의 기본 `ResourceTag`는 같은 표기를 사용합니다. `assets/resources/interface.json`의 표시 버전도 해당 리소스 버전으로 변경하세요.
-- MFWSide 태그는 독립적으로 관리합니다. 현재 차기 대상은 `deployment/runtime.json`의 `app_tag: 1.0.0`입니다. 이후 앱 릴리즈가 바뀌면 실제 게시된 태그로 갱신하세요.
-- 지금은 **ANReroll 파이프라인·MFWSide 수정 후 `1.0.0`을 게시하기 위한 준비 단계**입니다. 새 기본 설치는 두 `1.0.0` 릴리즈가 모두 올라온 뒤 실행해야 합니다.
-- 기존 공개 `v1.0` 릴리즈·다운로드 URL·`Distribution/Setup_v1.0.*`는 유지합니다. 아직 태그를 변경하거나 새 릴리즈를 게시하지 않았습니다.
+- 표시 버전·파일명·생성 도구의 `--version`은 `1.0.0`, `1.0.1`, `1.1.0`처럼 **`v` 없는 세 정수**로 지정합니다. `01.0.0` 같은 선행 0은 사용하지 않습니다.
+- GitHub 태그는 **`v1.0.0`**, 릴리즈 제목은 **`Arknights_Reroll 1.0.0`** 형식입니다. 생성된 설치 파일의 기본 `ResourceTag`에는 자동으로 `v`가 붙습니다. ZIP manifest와 `assets/resources/interface.json`의 버전에는 붙이지 않습니다.
+- MFWSide 태그는 독립적으로 관리합니다. 현재 대상은 `deployment/runtime.json`의 `app_tag: v1.0.0`이며 SDK는 MaaFW `5.12.3`입니다. 이후 앱 릴리즈가 바뀌면 실제 게시된 태그로 갱신하세요.
+- 기존 `v1.0` 릴리즈를 `v1.0.0`으로 전환하되, 과거 Git 태그 `v1.0`과 저장소의 `Distribution/Setup_v1.0.*`는 이력으로 보존합니다. 현재 설치에는 `Setup_1.0.0.*`를 사용하며, 이전 첨부 다운로드 링크를 계속 제공하는 것은 아닙니다.
 
 ## 설치 파일 구분
 
@@ -19,7 +18,7 @@
 | `Distribution/Setup_<버전>.ps1` | 설치 위치·버전·업데이트 등 추가 옵션을 지정할 때 사용 |
 | 각 설치 파일의 `.sha256` | 다운로드·업로드 무결성 확인용. 설치 실행에 필수인 파일은 아님 |
 
-예를 들어 `Setup_1.0.0.cmd`와 `Setup_1.0.0.ps1`은 기본 리소스가 `1.0.0`으로 고정됩니다. 파일명만 바꾸지 말고 생성 명령의 `--version`을 변경하세요. PS1에서는 `-ResourceTag`로 이 기본값을 덮어쓸 수 있습니다.
+예를 들어 `Setup_1.0.0.cmd`와 `Setup_1.0.0.ps1`은 기본 리소스 태그가 `v1.0.0`으로 고정됩니다. 파일명만 바꾸지 말고 생성 명령의 `--version`을 변경하세요. PS1에서는 `-ResourceTag`로 이 기본값을 덮어쓸 수 있습니다.
 
 CMD에는 동일 버전의 PowerShell 설치 코드 전체가 평문으로 포함됩니다. 사용자는 **CMD 하나만** 받아 새 폴더에서 실행하면 됩니다. 별도 PS1을 내려받거나 임시 PS1을 만들지 않으며, 실행 앱·리소스·로컬 Python·Agent 의존성은 인터넷에서 자동 다운로드합니다. 추가 인수는 CMD에서 전달하지 않습니다. 사용자 설정이 필요하면 PS1을 사용하세요.
 
@@ -76,7 +75,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -Insta
 
 ```powershell
 # MFWSide 1.1.0이 게시되었고 현재 리소스와 SDK가 호환될 때의 예시
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update -AppTag 1.1.0
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -Update -AppTag v1.1.0
 ```
 
 이 명령은 관리되는 앱·리소스를 함께 재설치합니다. 앱만 따로 교체하는 전용 스위치는 없습니다. 기본 앱 버전은 리소스 ZIP의 `deployment/runtime.json`에 있는 `app_tag`이며, **자동으로 MFWSide의 최신 버전을 선택하지 않습니다.** `BUILD-INFO.json`의 MaaFW 버전이 맞지 않으면 중단합니다.
@@ -109,6 +108,10 @@ git status --short
 
 ```powershell
 $Version = '1.0.0'
+python .\tools\package_release.py --version $Version --installers-only
+git add -- Distribution
+git commit -m "Chore: $Version 설치 파일 생성"
+# 설치 파일까지 커밋한 뒤 ZIP을 생성해야 source_commit이 배포 소스와 일치
 python .\tools\package_release.py --version $Version
 ```
 
@@ -143,7 +146,8 @@ python .\tools\package_release.py --version 1.0.0 --installers-only --replace-in
 
 ```powershell
 $Version = '1.0.0'
-$Repository = 'D-Roote/Arknights_ReRoll'
+$Tag = "v$Version"
+$Repository = 'D-Roote/Arknights_Reroll'
 $Artifacts = @(
     ".\dist\ANReroll-resources-$Version.zip",
     ".\dist\ANReroll-resources-$Version.zip.sha256",
@@ -152,14 +156,14 @@ $Artifacts = @(
     ".\Distribution\Setup_$Version.ps1",
     ".\Distribution\Setup_$Version.ps1.sha256"
 )
-# 검토한 설치 파일을 커밋하고 소스를 푸시한 후 게시
-git add -- Distribution
-git commit -m "Chore: $Version 설치 파일 생성"
+# 앞 단계에서 설치 파일을 커밋하고 ZIP을 생성한 상태에서 실행
 git push origin main
-gh release create $Version @Artifacts --repo $Repository --target main --title "Arknights_ReRoll $Version" --notes "기본 설치는 Setup_$Version.cmd 하나를 새 폴더에서 실행하세요. 추가 옵션과 업데이트는 Setup_$Version.ps1을 사용하세요."
+git tag -a $Tag -m "Arknights_Reroll $Version"
+git push origin $Tag
+gh release create $Tag @Artifacts --repo $Repository --verify-tag --title "Arknights_Reroll $Version" --notes "기본 설치는 Setup_$Version.cmd 하나를 새 폴더에서 실행하세요. 추가 옵션과 업데이트는 Setup_$Version.ps1을 사용하세요."
 ```
 
-`--version`에는 게시할 리소스 태그를 넣습니다. `1.0`이나 `v1.0.0`은 생성 단계에서 거부합니다. MFWSide 태그와 같을 필요는 없습니다. 자동 생성된 `Source code.zip`을 리소스 ZIP 대신 올리지 마세요. 패키징 도구 자체는 커밋·푸시·태그 생성·업로드를 하지 않습니다. 기존 릴리즈 교체를 설명하는 아래 명령도 `1.0.0`을 처음 게시한 **이후**에 사용하는 예시입니다.
+`--version`에는 `1.0.0`처럼 숫자 버전을 넣습니다. `1.0`이나 `v1.0.0`은 생성 단계에서 거부하며, GitHub 명령에는 `v1.0.0` 태그를 사용합니다. MFWSide 태그와 같을 필요는 없습니다. 자동 생성된 `Source code.zip`을 리소스 ZIP 대신 올리지 마세요. 패키징 도구 자체는 커밋·푸시·태그 생성·업로드를 하지 않습니다. 기존 릴리즈 교체를 설명하는 아래 명령은 해당 태그가 이미 게시된 경우의 예시입니다. 이미 존재하는 태그를 강제로 이동하지 마세요.
 
 ### 기존 릴리즈의 리소스만 교체
 
@@ -167,12 +171,13 @@ gh release create $Version @Artifacts --repo $Repository --target main --title "
 
 ```powershell
 $Version = '1.0.0'
-$Repository = 'D-Roote/Arknights_ReRoll'
+$Tag = "v$Version"
+$Repository = 'D-Roote/Arknights_Reroll'
 $Stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $Output = ".\dist\repack-$Version-$Stamp"
-gh release download $Version --repo $Repository --dir ".\.cache\release-backup-$Version-$Stamp" --pattern "ANReroll-resources-$Version.zip*"
+gh release download $Tag --repo $Repository --dir ".\.cache\release-backup-$Version-$Stamp" --pattern "ANReroll-resources-$Version.zip*"
 python .\tools\package_release.py --version $Version --output-dir $Output
-gh release upload $Version "$Output\ANReroll-resources-$Version.zip" "$Output\ANReroll-resources-$Version.zip.sha256" --repo $Repository --clobber
+gh release upload $Tag "$Output\ANReroll-resources-$Version.zip" "$Output\ANReroll-resources-$Version.zip.sha256" --repo $Repository --clobber
 ```
 
 설치 코드도 바뀌었다면 위 생성 명령에 `--replace-installers`를 추가하고, 아래 설치 파일 교체도 수행하세요. 생성에 실패했다면 업로드하지 마세요. 게시 후에는 첨부 digest와 체크섬, 새 폴더에서의 설치를 다시 확인합니다.
@@ -181,9 +186,10 @@ gh release upload $Version "$Output\ANReroll-resources-$Version.zip" "$Output\AN
 
 ```powershell
 $Version = '1.0.0'
-$Repository = 'D-Roote/Arknights_ReRoll'
+$Tag = "v$Version"
+$Repository = 'D-Roote/Arknights_Reroll'
 python .\tools\package_release.py --version $Version --installers-only
-gh release upload $Version ".\Distribution\Setup_$Version.cmd" ".\Distribution\Setup_$Version.cmd.sha256" ".\Distribution\Setup_$Version.ps1" ".\Distribution\Setup_$Version.ps1.sha256" --repo $Repository
+gh release upload $Tag ".\Distribution\Setup_$Version.cmd" ".\Distribution\Setup_$Version.cmd.sha256" ".\Distribution\Setup_$Version.ps1" ".\Distribution\Setup_$Version.ps1.sha256" --repo $Repository
 ```
 
 처음 첨부할 때는 `--clobber`가 필요 없습니다. 기존 설치 파일도 교체하려면 먼저 `gh release download`로 해당 파일들을 보관하고, 생성에는 `--replace-installers`, 업로드에는 `--clobber`를 명시하세요. 릴리즈 본문의 설치 안내도 새 파일명과 맞춥니다. 기존 무버전 `setup.ps1` 첨부는 이전 링크 호환용으로 남길 수 있습니다.
@@ -192,7 +198,7 @@ gh release upload $Version ".\Distribution\Setup_$Version.cmd" ".\Distribution\S
 
 ```powershell
 # 게시된 파일명·크기·서버 digest 확인
-gh release view 1.0.0 --repo D-Roote/Arknights_ReRoll --json tagName,assets
+gh release view v1.0.0 --repo D-Roote/Arknights_Reroll --json tagName,assets
 
 # 로컬 설치 파일의 해시 확인
 Get-FileHash .\Distribution\Setup_1.0.0.ps1 -Algorithm SHA256

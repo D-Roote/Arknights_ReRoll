@@ -1,10 +1,10 @@
-# Arknights_ReRoll
+# Arknights_Reroll
 
 명일방주 한국 서버 리세마라 자동화 리소스입니다. [MFWSide](https://github.com/D-Roote/MFWSide) 실행 앱과 [MaaFramework](https://github.com/MaaXYZ/MaaFramework)를 사용하며, 오퍼레이터 화면 저장과 게스트 계정 백업·복원을 지원합니다.
 
 ## 설치
 
-이 문서는 **차기 `1.0.0` 배포 기준**입니다. ANReroll 리소스와 MFWSide의 `1.0.0` 릴리즈가 모두 게시된 후 아래 새 설치 파일을 사용하세요. 현재 공개된 `v1.0`과 이전 `Setup_v1.0.*` 파일은 기존 설치용으로 유지합니다.
+현재 배포는 **Arknights_Reroll 1.0.0**이며, GitHub 태그는 `v1.0.0`입니다. 설치 파일은 호환되는 **MFWSide 1.0.0**(`v1.0.0`)과 Agent 환경을 자동으로 구성합니다.
 
 Windows x64 환경에서 사용합니다. 별도로 Python을 설치하거나 관리자 권한으로 실행할 필요는 없습니다.
 

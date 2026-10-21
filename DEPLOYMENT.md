@@ -1,12 +1,12 @@
 # 설치·배포 자동화
 
-차기 배포부터 버전은 `v` 접두사 없는 `1.0.0` 형식으로 통일합니다. 현재 설정은 ANReroll·MFWSide의 **`1.0.0` 릴리즈 게시를 준비한 상태**입니다. 두 릴리즈를 게시하기 전에는 새 기본 설치를 실행하지 마세요. 기존 공개 `v1.0` 릴리즈와 이전 설치 파일은 별도로 유지합니다.
+현재 배포 제목은 **Arknights_Reroll 1.0.0**, GitHub 태그는 **`v1.0.0`**입니다. 표시 버전과 파일명은 `1.0.0`, GitHub 태그는 `v1.0.0`처럼 구분합니다. MFWSide도 `v1.0.0` 태그를 사용하며, 이전 Git 태그 `v1.0`과 저장소의 과거 설치 파일은 보존합니다.
 
 ## 사용자 설치
 
 Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치용 단일 파일은 `Setup_1.0.0.cmd`, 추가 옵션용은 `Setup_1.0.0.ps1`입니다. CMD는 **그 파일이 있는 폴더**, PS1은 **PowerShell의 현재 폴더**에 설치하며 `-InstallDir`로 다른 위치를 지정할 수 있습니다. 첫 설치는 쓰기 가능한 빈 로컬 폴더 또는 실행할 설치 파일 하나만 있는 폴더에서 진행하세요. Git, 관리자 권한, 시스템 Python 설치는 필요하지 않습니다.
 
-1. [Arknights_ReRoll 릴리즈](https://github.com/D-Roote/Arknights_ReRoll/releases)에서 `Setup_1.0.0.cmd` 하나만 내려받아 새 폴더에서 더블클릭합니다. CMD에는 설치 코드가 포함되어 별도 PS1이 필요 없습니다.
+1. [Arknights_Reroll 릴리즈](https://github.com/D-Roote/Arknights_Reroll/releases)에서 `Setup_1.0.0.cmd` 하나만 내려받아 새 폴더에서 더블클릭합니다. CMD에는 설치 코드가 포함되어 별도 PS1이 필요 없습니다.
 2. 추가 옵션을 지정하려면 CMD 대신 `Setup_1.0.0.ps1`을 받고 PowerShell에서 실행합니다.
 
    ```powershell
@@ -20,8 +20,8 @@ Windows x64와 Windows PowerShell 5.1 이상이 필요합니다. 기본 설치�
 
 설치 스크립트는 다음을 자동 수행합니다.
 
-- GitHub API에서 지정한 리소스 릴리즈의 ZIP을 다운로드합니다. 저장소 원본 `Setup.ps1`의 기본값은 `latest`, 생성된 `Setup_<버전>.ps1`과 CMD의 기본값은 해당 버전입니다.
-- 리소스가 지정한 MFWSide 릴리즈를 다운로드합니다. 차기 대상 앱 태그는 `1.0.0`, 지정 SDK는 MaaFW `5.12.3`입니다. 새 앱 빌드의 SDK 버전을 확인한 후 게시하세요. 무조건 최신 앱으로 바꾸지 않으며, 앱의 `BUILD-INFO.json`과 리소스 SDK 버전이 다르면 설치를 중단합니다.
+- GitHub API에서 지정한 리소스 릴리즈의 ZIP을 다운로드합니다. 저장소 원본 `Setup.ps1`의 기본값은 `latest`, 생성된 `Setup_1.0.0.ps1`과 CMD의 기본값은 `v1.0.0`입니다.
+- 리소스가 지정한 MFWSide 릴리즈를 다운로드합니다. 현재 앱 태그는 `v1.0.0`, 지정 SDK는 MaaFW `5.12.3`이며 해당 앱의 빌드 정보와 일치합니다. 무조건 최신 앱으로 바꾸지 않으며, 앱의 `BUILD-INFO.json`과 리소스 SDK 버전이 다르면 설치를 중단합니다.
 - GitHub의 SHA-256 digest 또는 릴리즈의 `.sha256` 파일로 ZIP을 검증하고 안전하게 압축 해제합니다. 경로 이탈·심볼릭 링크·중복 파일·Windows 특수 파일명은 거부합니다.
 - 리소스 ZIP에 동봉한 **기존 한국어 OCR 모델 세 파일을 그대로** 설치하고 해시를 확인합니다. MaaCommonAssets의 다른 모델로 대체하지 않습니다.
 - 공식 Python NuGet 배포본 `3.13.10`을 설치 폴더에 풀어 `.venv`를 만듭니다. 이것은 `venv`와 `ensurepip`를 포함하는 Python 배포본이며, pip 설치가 제한되는 embeddable ZIP이 아닙니다. 별도 `nuget.exe`도 필요하지 않습니다.
@@ -62,7 +62,7 @@ ANReroll/
 
 ```powershell
 # 리소스 버전 고정
-.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -ResourceTag 1.0.0
+.\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -ResourceTag v1.0.0
 
 # 설치된 x64 Python 3.10~3.13 사용: 로컬 Python 다운로드 생략
 .\Setup_1.0.0.ps1 -InstallDir C:\Games\ANReroll -PythonExe C:\Python313\python.exe
@@ -109,7 +109,7 @@ ZIP에는 `assets/resources`, `assets/agent`, 설치 검증 도구, 의존성·�
 
 현재 작업 트리의 파일을 패키징하므로 공개 전 변경 내용과 포함 파일을 확인하세요. `ANREROLL-RESOURCE.json`에는 기준 커밋과 배포한 각 파일의 해시가 기록됩니다. 기존 ZIP이나 체크섬은 덮어쓰지 않습니다.
 
-1. `D-Roote/Arknights_ReRoll`에서 해당 버전의 정식 GitHub Release를 준비합니다.
+1. `D-Roote/Arknights_Reroll`에서 `v<버전>` 태그의 정식 GitHub Release를 준비합니다. 제목은 `Arknights_Reroll <버전>`으로 지정합니다.
 2. 위 리소스 ZIP·체크섬과 `Distribution/Setup_<버전>.{cmd,ps1}`·각 체크섬을 첨부합니다.
 3. 공개한 뒤 빈 설치 폴더에서 해당 `-ResourceTag`를 지정해 확인합니다.
 

@@ -70,8 +70,10 @@
             "param": {"target": true}
         },
         "next": [
-            "0-1_Retreat_Give_Up",
-            "0-1_Retreat_Click_Pause"
+            "TR1_Retreat_Give_Up",
+            "[JumpBack]Public_Battle_Skip_Chk",
+            "[JumpBack]Public_Battle_Skip",
+            "TR1_Retreat_Click_Pause"
         ]
     },
     "0-1_Retreat_Give_Up": {

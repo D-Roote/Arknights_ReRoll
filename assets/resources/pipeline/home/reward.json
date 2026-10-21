@@ -27,6 +27,7 @@
         "next": [
             "[JumpBack]Home_Reward_Birthday",
             "Home_Reward_Get_Mail_1",
+            "[JumpBack]Home_Popup_Daily_Plan_JB_1",
             "[JumpBack]Home_Popup_Any_Popup"
         ]
     },

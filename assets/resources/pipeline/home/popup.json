@@ -52,6 +52,45 @@
             "Home_Popup_Daily_Plan_2"
         ]
     },
+    "Home_Popup_Daily_Plan_JB_1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/1_daily_plan_1.png",
+
+                "roi": [513, 0, 258, 720]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [638, 636, 1, 1]
+            }
+        },
+        "next": [
+            "[JumpBack]Error_Exception",
+            "Home_Popup_Daily_Plan_2",
+            "Home_Popup_Daily_Plan_1"
+        ]
+    },
+    "Home_Popup_Daily_Plan_JB_2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "home/2_daily_plan_2.png",
+                "roi": [48, 116, 151, 151]
+
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [1214, 67, 1, 1]
+            }
+        },
+        "next": []
+    },
 
     "Home_Popup_Rookie_Mission": {
         "recognition": {

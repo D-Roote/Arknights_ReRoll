@@ -115,7 +115,7 @@
                 {
                     "name": "0-1 퇴각런 (7분)",
                     "pipeline_override": {
-                        "Home_Reward_Check_Home": {"next": "Start_Gatcha"}
+                        "Home_Reward_Check_Home": {"next": "Home_Reward_Exit_Rookie_Mission"}
                     }
                 },
                 {

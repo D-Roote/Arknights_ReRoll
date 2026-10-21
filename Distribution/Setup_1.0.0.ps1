@@ -1,12 +1,12 @@
 ﻿#Requires -Version 5.1
-# ANReroll resource release: 1.0.0
+# Arknights_Reroll resource release: v1.0.0
 <#
 .SYNOPSIS
 Install MFWSide, ANReroll resources and an isolated Python Agent environment.
 .EXAMPLE
 powershell -NoProfile -ExecutionPolicy Bypass -File .\Setup.ps1
 .EXAMPLE
-.\Setup.ps1 -InstallDir C:\Games\ANReroll -ResourceTag 1.0.0 -Launch
+.\Setup.ps1 -InstallDir C:\Games\ANReroll -ResourceTag v1.0.0 -Launch
 .NOTES
 No administrator rights, system Python installation, PATH edits or device input.
 Release ZIPs require GitHub SHA256 digests or matching .sha256 assets.
@@ -14,7 +14,7 @@ Release ZIPs require GitHub SHA256 digests or matching .sha256 assets.
 [CmdletBinding()]
 param(
     [string]$InstallDir = (Get-Location).Path,
-    [string]$ResourceTag = '1.0.0',
+    [string]$ResourceTag = 'v1.0.0',
     [string]$AppTag = '',
     [string]$ResourceAsset = '',
     [string]$ResourceArchive = '',

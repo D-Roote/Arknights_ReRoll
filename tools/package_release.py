@@ -63,8 +63,8 @@ def build_installers(root: Path, output: Path, version: str, *, replace: bool = 
     default = "    [string]$ResourceTag = 'latest',"
     if script.count(default) != 1:
         raise ValueError('Cannot pin the installer resource version; review Setup.ps1.')
-    script = script.replace(default, f"    [string]$ResourceTag = '{version}',")
-    script = script.replace('#Requires -Version 5.1\n', f'#Requires -Version 5.1\n# ANReroll resource release: {version}\n', 1)
+    script = script.replace(default, f"    [string]$ResourceTag = 'v{version}',")
+    script = script.replace('#Requires -Version 5.1\n', f'#Requires -Version 5.1\n# Arknights_Reroll resource release: v{version}\n', 1)
     contents = {
         output / f'Setup_{version}.ps1': script.replace('\n', '\r\n').encode('utf-8-sig'),
         output / f'Setup_{version}.cmd': cmd_installer(script),

@@ -11,7 +11,7 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [1234, 634, 1, 1]
+                "target": [1238, 670, 1, 1]
             }
         },
         "next": [

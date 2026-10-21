@@ -1,4 +1,4 @@
 # Installer checksums must continue to match after a clone/checkout.
-/Distribution/*.ps1 -text
-/Distribution/*.cmd -text
+/Distribution/*.ps1 -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/Distribution/*.cmd -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 /Distribution/*.sha256 text eol=lf

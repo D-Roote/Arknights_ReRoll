@@ -1,7 +1,7 @@
 {
     "interface_version": 2,
     "name": "Arknights Reroll",
-    "version": "1.0",
+    "version": "1.0.0",
     "custom_title": "비틱이 하고 싶어요.",
     "agent": {
         "child_exec": "../../.venv/Scripts/python.exe",

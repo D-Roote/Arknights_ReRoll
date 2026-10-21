@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "app_repository": "D-Roote/MFWSide",
-  "app_tag": "v1.0",
+  "app_tag": "1.0.0",
   "maafw_version": "5.12.3",
   "python": {
     "version": "3.13.10",

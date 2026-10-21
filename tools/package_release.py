@@ -20,8 +20,8 @@ PAYLOAD_MARKER = '# ANREROLL_POWERSHELL_PAYLOAD'
 
 
 def validate_version(version: str) -> None:
-    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,63}', version):
-        raise ValueError('Use a simple release version, for example v1.0.')
+    if len(version) > 64 or not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
+        raise ValueError('Use a three-part numeric version without a v prefix, for example 1.0.0.')
 
 
 def cmd_installer(script: str) -> bytes:
@@ -178,7 +178,7 @@ def build(root: Path, output: Path, version: str) -> list[Path]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--version', required=True)
+    parser.add_argument('--version', required=True, help='Three-part numeric release version, e.g. 1.0.0 (no v prefix).')
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'dist')
     parser.add_argument('--installer-output-dir', type=Path, default=ROOT / 'Distribution')
     parser.add_argument('--installers-only', action='store_true', help='Generate installers without rebuilding the resource ZIP.')

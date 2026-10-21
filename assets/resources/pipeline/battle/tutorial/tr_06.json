@@ -82,7 +82,8 @@
             "[JumpBack]Public_Pause_Fix",
             "[JumpBack]Public_Battle_Skip_Chk",
             "[JumpBack]Public_Battle_Skip",
-            "TR6_Op_Start"
+            "TR6_Op_Start",
+            "TR6_Press_06"
         ]
     },
     "TR6_Op_Start": {
